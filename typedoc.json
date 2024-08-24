@@ -1,0 +1,8 @@
+{
+    "entryPoints": [
+        "src/lib/index.tsx"
+    ],
+    "out": "./docs",
+    "readme": "./DOC.md",
+    "exclude": ["**/*+(.test)+(.tsx|.ts)"]
+}
