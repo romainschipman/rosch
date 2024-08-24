@@ -1,3 +1,7 @@
+/**
+ * App Component
+ * @returns The app component
+ */
 const App = () => {
 
   return (
