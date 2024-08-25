@@ -1,28 +1,37 @@
 import styled from "styled-components";
 import { CssProperties } from "../../../interfaces/css-properties.interface";
 import { generateCssProperties } from "../../../utils/generate-css-properties/generate-css-properties";
+import { ColorType } from "../../../theme/theme.interface";
+import { generateTextDecoration } from "./helpers/generate-text-decoration/generate-text-decoration";
+import { generateTextColor } from "./helpers/generate-text-color/generate-text-color";
 
 /**
  * Interface for the props of the `RoschTextStyled` component.
  * Extends `CssProperties` to include additional styling options.
  *
- * @property {string} [bold] - Optional property to apply bold styling to the text.
+ * @property {boolean} [bold] - Optional property to apply bold styling to the text.
+ * @property {boolean} [underline] - Optional property to apply underline styling to the text.
+ * @property {boolean} [uppercase] - Optional property to apply uppercase styling to the text.
+ * @property {string} [colorType] - Optional property to apply a specific color type from the theme.
  */
 export interface RoschTextStyledProps extends CssProperties {
-    bold?: string;
+    /**
+     * Optional property to apply bold styling to the text
+     */
+    bold?: boolean;
+    /**
+     * Optional property to apply underline styling to the text.
+     */
+    underline?: boolean;
+    /**
+     * Optional property to apply uppercase styling to the text.
+     */
+    uppercase?: boolean;
+    /**
+     * Optional property to apply a specific color type from the theme.
+     */
+    colorType?: ColorType;
 }
-
-/**
- * Generates the CSS for bold text styling.
- *
- * @param props - The properties used to determine if bold styling should be applied.
- * @returns A string with the `font-weight: bold;` CSS rule if the `bold` prop is provided.
- */
-const generateBold = (props: RoschTextStyledProps): string | undefined => {
-  if(props.bold) {
-    return "font-weight: bold;";
-  }
-};
 
 /**
  * A styled component for text, which includes customizable properties such as
@@ -38,7 +47,8 @@ const generateBold = (props: RoschTextStyledProps): string | undefined => {
  */
 const RoschTextStyled = styled.text<RoschTextStyledProps>`
     ${generateCssProperties}
-    ${generateBold}
+    ${generateTextDecoration}
+    ${generateTextColor}
     letter-spacing: 0.15rem;
 `;
 
