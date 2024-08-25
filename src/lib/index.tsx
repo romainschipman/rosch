@@ -1,4 +1,6 @@
-
+//ATOMS
+export type { RoschTextProps } from "./components/atoms/rosch-text/rosch-text";
+export { RoschText } from "./components/atoms/rosch-text/rosch-text";
 
 //THEME
 export type { RoschThemeProps } from "./components/rosch-theme/rosch-theme";

@@ -22,9 +22,8 @@ export type RadiusSize = "none" | "sm" | "md" | "lg" | "xl" | "xxl" | "pills";
 /**
  * Represents a color palette within the theme.
  * A structure defining a color palette with multiple shades, from the lightest to the darkest.
- * @interface
+ * @interface ColorPalette
  * 
- * @typedef {Object} ColorPalette
  * @property {string} lightest - The lightest shade of the color.
  * @property {string} light - A light shade of the color.
  * @property {string} base - The base color.
@@ -42,9 +41,8 @@ export interface ColorPalette {
 /**
  * Represents the structure of the application's theme.
  * This interface defines the structure of the application's theme, including color palettes, text sizes, spacing, border-radius sizes, and default styles for buttons and input fields.
- * @interface
+ * @interface Theme
  * 
- * @typedef {Object} Theme
  * @property {string} name - The name of the theme.
  * @property {Object.<string, ColorPalette>} colors - The color palettes used in the theme.
  * @property {ColorPalette} colors.primary - The primary color palette.
