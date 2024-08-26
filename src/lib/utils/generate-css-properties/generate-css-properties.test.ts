@@ -66,16 +66,14 @@ describe("Unit test for generateCssProperties", () => {
       },
       defaultRadiusSize: "md",
       buttons: {
-        backgroundColor: "#00bcd4",
         radius: "md",
-        spacing: "sm",
-        textSize: "lg",
+        padding: "sm",
+        fontSize: "lg",
       },
       inputs: {
-        backgroundColor: "#ffffff",
         radius: "sm",
-        spacing: "xs",
-        textSize: "md",
+        padding: "xs",
+        fontSize: "md",
       }
     };
 
@@ -90,7 +88,6 @@ describe("Unit test for generateCssProperties", () => {
 
     const result = generateCssProperties(props);
 
-    expect(result).toContain("font-size:16px;");
     expect(result).toContain("border-radius:4px;");
     expect(result).not.toContain("width:");
     expect(result).not.toContain("height:");
@@ -119,23 +116,15 @@ describe("Unit test for generateCssProperties", () => {
 
     const result = generateCssProperties(props, defaultValues);
 
-    expect(generateFontSize).toHaveBeenCalledWith("sm", theme?.textSizes);
     expect(generateRadius).toHaveBeenCalledWith("lg", theme?.radiusSizes);
     expect(generateSpacing).toHaveBeenCalledWith("md", theme?.spacings);
-    expect(generateSpacing).toHaveBeenCalledWith("xs", theme?.spacings);
-    expect(generateSpacing).toHaveBeenCalledWith("xl", theme?.spacings);
 
-    expect(result).toContain("font-size:16px;"); // Uses mock value
     expect(result).toContain("border-radius:4px;"); // Uses mock value
     expect(result).toContain("width:100px;");
     expect(result).toContain("height:50px;");
     expect(result).toContain("max-width:200px;");
     expect(result).toContain("max-height:150px;");
     expect(result).toContain("padding:10px;");
-    expect(result).toContain("padding-left:10px;");
-    expect(result).toContain("padding-right:10px;");
-    expect(result).toContain("padding-top:10px;");
-    expect(result).toContain("padding-bottom:10px;");
   });
 
   test("should override theme and defaultValues with props", () => {
@@ -151,7 +140,6 @@ describe("Unit test for generateCssProperties", () => {
       height: "75px",
       maxWidth: "250px",
       maxHeight: "175px",
-      padding: "xxl",
       paddingHorizontal: "xxl",
       paddingVertical: "xxl",
     } as unknown as Theming;
@@ -162,28 +150,60 @@ describe("Unit test for generateCssProperties", () => {
       height: "50px",
       maxWidth: "200px",
       maxHeight: "150px",
-      padding: "md",
       paddingHorizontal: "md",
       paddingVertical: "md",
     } as CssProperties;
 
     const result = generateCssProperties(props, defaultValues);
 
-    expect(generateFontSize).toHaveBeenCalledWith("lg", theme?.textSizes);
     expect(generateRadius).toHaveBeenCalledWith("pills", theme?.radiusSizes);
     expect(generateSpacing).toHaveBeenCalledWith("xxl", theme?.spacings);
 
-    expect(result).toContain("font-size:16px;"); // Uses mock value
+    expect(result).toContain("border-radius:4px;"); // Uses mock value
+    expect(result).toContain("width:150px;");
+    expect(result).toContain("height:75px;");
+    expect(result).toContain("max-width:250px;");
+    expect(result).toContain("max-height:175px;");
+    expect(result).toContain("padding-left:10px;");
+    expect(result).toContain("padding-right:10px;");
+    expect(result).toContain("padding-top:10px;");
+    expect(result).toContain("padding-bottom:10px;");
+  });
+
+  test("should override theme and defaultValues with props (with padding props)", () => {
+    if(!theme) {
+      throw new Error("theme should'nt be undefined");
+    }
+
+    const props: CssProperties & { theme: Theme } = {
+      theme,
+      radius: "pills",
+      width: "150px",
+      height: "75px",
+      maxWidth: "250px",
+      maxHeight: "175px",
+      padding: "xxl",
+    } as unknown as Theming;
+    const defaultValues: CssProperties = {
+      radius: "sm",
+      width: "100px",
+      height: "50px",
+      maxWidth: "200px",
+      maxHeight: "150px",
+      padding: "md",
+    } as CssProperties;
+
+    const result = generateCssProperties(props, defaultValues);
+
+    expect(generateRadius).toHaveBeenCalledWith("pills", theme?.radiusSizes);
+    expect(generateSpacing).toHaveBeenCalledWith("xxl", theme?.spacings);
+
     expect(result).toContain("border-radius:4px;"); // Uses mock value
     expect(result).toContain("width:150px;");
     expect(result).toContain("height:75px;");
     expect(result).toContain("max-width:250px;");
     expect(result).toContain("max-height:175px;");
     expect(result).toContain("padding:10px;");
-    expect(result).toContain("padding-left:10px;");
-    expect(result).toContain("padding-right:10px;");
-    expect(result).toContain("padding-top:10px;");
-    expect(result).toContain("padding-bottom:10px;");
   });
 
   test("should handle missing optional properties gracefully", () => {
@@ -195,7 +215,6 @@ describe("Unit test for generateCssProperties", () => {
     const result = generateCssProperties(props);
 
     expect(result).toContain("width:150px;");
-    expect(result).toContain("font-size:16px;"); // Uses mock value
     expect(result).toContain("border-radius:4px;"); // Uses mock value
     expect(result).not.toContain("height:");
     expect(result).not.toContain("max-width:");

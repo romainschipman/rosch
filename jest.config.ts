@@ -11,6 +11,13 @@ const config: Config.InitialOptions = {
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/lib/**/*.{ts,tsx}',
+    '!src/lib/index.tsx',
+    '!src/lib/**/*.d.ts',
+  ],
+  coverageDirectory: '<rootDir>/coverage',
 };
 
 export default config;

@@ -1,3 +1,5 @@
+import { CssProperties } from "../interfaces/css-properties.interface";
+
 /**
  * Type representing possible text sizes in the theme.
  * Defines the various text sizes available in the theme, ranging from extra-small (`xs`) to double extra-large (`xxl`).
@@ -90,16 +92,6 @@ export interface Theme {
     defaultSpacing: SpacingSize;
     radiusSizes: Record<RadiusSize, string>;
     defaultRadiusSize: RadiusSize;
-    buttons: {
-        backgroundColor: string;
-        radius: RadiusSize;
-        spacing: SpacingSize;
-        textSize: TextSize;
-    };
-    inputs: {
-        backgroundColor: string;
-        radius: RadiusSize;
-        spacing: SpacingSize;
-        textSize: TextSize;
-    };
+    buttons: Omit<CssProperties, "id">;
+    inputs: Omit<CssProperties, "id">;
 }

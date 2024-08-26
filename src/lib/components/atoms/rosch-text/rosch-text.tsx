@@ -34,7 +34,7 @@ export interface RoschTextProps extends RoschTextStyledProps {
  */
 const RoschText : FunctionComponent<RoschTextProps> = ({ children, ...props }) => {
   return(
-    <RoschTextStyled { ...props } >
+    <RoschTextStyled className="rosch__text" { ...props } >
       { children }
     </RoschTextStyled>
   );

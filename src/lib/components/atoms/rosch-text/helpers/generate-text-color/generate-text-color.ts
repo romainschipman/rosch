@@ -1,5 +1,7 @@
 import { ColorType, Theme } from "../../../../../theme/theme.interface";
 
+//TODO: [COLOR] waiting for change token and generatePalette
+
 interface GenerateTextColorProps {
     theme: Theme;
     colorType?: ColorType;
@@ -12,20 +14,6 @@ interface GenerateTextColorProps {
  * @returns {string} A CSS string to set the text color based on the specified color type. 
  *                   Returns an empty string if `colorType` is not provided.
  *
- * @example
- * ```typescript
- * const theme = {
- *   colors: {
- *     primary: { base: "#007bff" },
- *     secondary: { base: "#6c757d" },
- *     // other colors...
- *   },
- *   // other theme properties...
- * };
- *
- * const cssColor = generateTextColor({ theme, colorType: "primary" });
- * // cssColor is "color: #007bff;"
- * ```
  */
 const generateTextColor = ({ theme, colorType } : GenerateTextColorProps) => {
   if(!colorType) {
