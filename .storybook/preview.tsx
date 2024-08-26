@@ -10,8 +10,10 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      exclude: ["data-testid", "className"]
     },
   },
+
   decorators: [
     (Story) => (
       <RoschTheme theme={defaultTheme}>
@@ -19,6 +21,8 @@ const preview: Preview = {
       </RoschTheme>
     ),
   ],
+
+  tags: ["autodocs"]
 };
 
 

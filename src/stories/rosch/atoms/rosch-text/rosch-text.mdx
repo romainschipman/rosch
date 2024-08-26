@@ -1,0 +1,41 @@
+import { Meta, Canvas, Story, Controls, Title, Source } from '@storybook/blocks';
+import * as RoschTextStories from './rosch-text.stories';
+
+<Meta of={RoschTextStories} />
+
+<Title>Rosch-Text</Title>
+
+The **`RoschText`** component is a flexible and customizable text component that integrates seamlessly with your application's theme. It allows you to display styled text, with options for boldness, font size, and other styling through its props.
+
+## Props
+Below are the props that **`RoschText`** supports, including `children`, `bold`, `fontSize`, and more, allowing for flexible text customization.
+<Canvas layout="centered" />
+
+<Controls of={RoschTextStories.DefaultText} exclude={["width", "height", "maxWidth", "maxHeight", "radius", "size"]}/>
+
+---
+
+## Usage
+
+### Default Text
+This example demonstrates the **`RoschText`** component in its default configuration, displaying simple text content.
+
+<Canvas layout="centered" />
+
+### Small Bold Text
+This example shows the **`RoschText`** component rendering text in a smaller size with bold styling applied.
+
+<Canvas of={RoschTextStories.SmallTextBold} layout="centered" />
+
+### Large Uppercase Text
+This example illustrates the **`RoschText`** component displaying text in a larger font size with uppercase transformation applied.
+<Canvas of={RoschTextStories.LargeTextUppercase} layout="centered" />
+
+---
+
+## Technical Documentation
+
+<Source language="tsx" dark={true}>
+
+</Source>
+

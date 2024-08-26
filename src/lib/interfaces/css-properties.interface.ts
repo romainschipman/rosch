@@ -16,7 +16,6 @@ import { RadiusSize, SpacingSize, TextSize } from "../theme/theme.interface";
  * @property {SpacingSize} [paddingVertical] - Optional. The vertical padding of the component, using predefined values from the theme.
  * @property {SpacingSize} [padding] - Optional. The padding for all sides of the component, using predefined values from the theme.
  * @property {SpacingSize} [size] - Optional. The size for the component, using predefined values from the theme.
- * @property {TextSize} [fontSize] - Optional. The font size for the component, using predefined values from the theme.
  */
 export interface CssProperties {
     /**
@@ -68,7 +67,7 @@ export interface CssProperties {
      */
     size?: SpacingSize;
     /**
-     * CssProperties. The font size for the component, using predefined values from the theme.
+     * @deprecated The fontSize should disappear from the CssProperties interface
      */
     fontSize?: TextSize;
 }

@@ -1,6 +1,5 @@
 import { CssProperties } from "../../interfaces/css-properties.interface";
 import { Theme } from "../../theme/theme.interface";
-import { generateFontSize } from "../generate-font-size/generate-font-size";
 import { generateRadius } from "../generate-radius/generate-radius";
 import { generateSpacing } from "../generate-spacing/generate-spacing";
 
@@ -18,19 +17,16 @@ export interface Theming extends CssProperties {
 * @param defaultValues - Optional default values for CSS properties that can be used as fallback.
 * @returns A string containing the generated CSS properties.
 */
-const generateCssProperties = (props : Theming, defaultValues ?: CssProperties ) => {
+const generateCssProperties = (props : Theming, defaultValues ?: Omit<CssProperties, "id"> ) => {
   let cssProperties : string = "";
 
   const {
-    defaultTextSize: textSizeTheme,
-    textSizes,
     defaultRadiusSize: radiusSizeTheme,
     radiusSizes,
     spacings
   } = props.theme;
 
   const {
-    fontSize: defaultTextSize,
     width: defaultWidth,
     height: defaultHeight,
     maxWidth: defaultMaxWidth,
@@ -42,7 +38,6 @@ const generateCssProperties = (props : Theming, defaultValues ?: CssProperties )
   } = defaultValues ?? {};
 
   const {
-    fontSize: textSizeProps,
     width: widthProps,
     height: heightProps,
     maxWidth: maxWidthProps,
@@ -52,19 +47,6 @@ const generateCssProperties = (props : Theming, defaultValues ?: CssProperties )
     paddingHorizontal: paddingHorizontalProps,
     paddingVertical: paddingVerticalProps
   } = props;
-
-
-  let textSize = textSizeTheme;
-  if(defaultTextSize) {
-    textSize = defaultTextSize;
-  }
-  if(textSizeProps) {
-    textSize = textSizeProps;
-  }
-
-  if(textSize) {
-    cssProperties += `font-size:${generateFontSize(textSize, textSizes)};`;
-  }
 
   let radius = radiusSizeTheme;
   if(defaultRadiusSize) {
@@ -128,7 +110,7 @@ const generateCssProperties = (props : Theming, defaultValues ?: CssProperties )
     paddingHorizontal = paddingHorizontalProps;
   }
 
-  if(paddingHorizontal) {
+  if(!padding && paddingHorizontal) {
     cssProperties += `
     padding-left:${generateSpacing(paddingHorizontal, spacings)};
     padding-right:${generateSpacing(paddingHorizontal, spacings)};
@@ -141,7 +123,7 @@ const generateCssProperties = (props : Theming, defaultValues ?: CssProperties )
     paddingVertical = paddingVerticalProps;
   }
 
-  if(paddingVertical) {
+  if(!padding && paddingVertical) {
     cssProperties += `
     padding-top:${generateSpacing(paddingVertical, spacings)};
     padding-bottom:${generateSpacing(paddingVertical, spacings)};

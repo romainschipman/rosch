@@ -93,17 +93,13 @@ const defaultTheme : Theme = {
   defaultRadiusSize: "md",
   
   buttons: {
-    backgroundColor: "#007bff",
     radius: "md",
-    spacing: "md",
-    textSize: "md",
+    paddingHorizontal: "xl",
+    paddingVertical: "md",
   },
   
   inputs: {
-    backgroundColor: "#ffffff",
-    radius: "md",
-    spacing: "md",
-    textSize: "md",
+
   },
 };
 

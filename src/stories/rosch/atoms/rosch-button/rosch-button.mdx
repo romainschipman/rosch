@@ -1,0 +1,52 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as RoschButtonStories from './rosch-button.stories';
+
+<Meta of={RoschButtonStories} />
+
+# RoschButton
+
+The **`RoschButton`** component is a flexible and customizable button that integrates seamlessly with your application's theme. It can display custom content passed via the `children` prop, or fall back to using the `label` prop if `children` is not provided. The button also handles click events and can be disabled.
+
+## Props
+
+Here are the props that **`RoschButton`** supports, including `label`, `children`, `disabled`, and more, allowing for flexible customization.
+
+<Canvas layout="centered" />
+
+<Controls of={RoschButtonStories.DefaultButton} />
+
+---
+
+## Usage
+
+### Default Button
+This story shows the **`RoschButton`** in its default configuration with the label "Default Button".
+
+<Canvas layout="centered" />
+
+### Outlined Button
+This story demonstrates the **`RoschButton`** with an outlined style, emphasizing its border.
+
+<Canvas of={RoschButtonStories.OutlinedButton} layout="centered" />
+
+### Disabled Button
+Here, the **`RoschButton`** is shown in a disabled state, making it non-interactive.
+<Canvas of={RoschButtonStories.DisabledButton} layout="centered" />
+
+
+### Custom Children
+This story demonstrates how you can incorporate custom content inside the **`RoschButton`**.
+<Canvas of={RoschButtonStories.CustomChildren} layout="centered" />
+
+---
+
+## Examples
+
+### Basic Usage
+The most basic use of the **`RoschButton`** component:
+
+```tsx
+<RoschButton>
+  Click Me
+</RoschButton>
+```
