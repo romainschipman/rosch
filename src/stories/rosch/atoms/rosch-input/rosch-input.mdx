@@ -1,0 +1,31 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as RoschInputStories from './rosch-input.stories';
+
+<Meta of={RoschInputStories} />
+
+# Rosch-Input
+`RoschInput` is a customizable input component designed to integrate seamlessly with your application's theme. It supports a variety of props, including `label`, `placeholder`, and `onChange`, allowing for a wide range of use cases. The input can be rendered in different states, such as `disabled` or `readOnly`, and supports styling through `styled-components`.
+
+## Props
+
+The `RoschInput` component accepts several props that control its appearance and behavior.
+
+
+<Canvas layout="centered" />
+
+<Controls of={RoschInputStories.DefaultInput} />
+
+---
+
+## Usage
+This story demonstrates the default usage of the `RoschInput` component with basic props. The `label` is displayed above the input, and the `placeholder` text is shown inside the input field.
+
+### Default Input
+
+<Canvas layout="centered" />
+
+<Canvas layout="centered" of={RoschInputStories.InputPassword} />
+
+---
+
+## Examples
