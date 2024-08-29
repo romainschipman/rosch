@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { RoschTextStyled, RoschTextStyledProps } from "./rosch-text.style";
+import classNames from "classnames";
 
 /**
  * Props for the RoschText component.
@@ -32,9 +33,9 @@ export interface RoschTextProps extends RoschTextStyledProps {
  *
  * @returns A JSX element with styled text.
  */
-const RoschText : FunctionComponent<RoschTextProps> = ({ children, ...props }) => {
+const RoschText : FunctionComponent<RoschTextProps> = ({ children, className, ...props }) => {
   return(
-    <RoschTextStyled className="rosch__text" { ...props } >
+    <RoschTextStyled className={classNames("rosch__text", className)} { ...props } >
       { children }
     </RoschTextStyled>
   );

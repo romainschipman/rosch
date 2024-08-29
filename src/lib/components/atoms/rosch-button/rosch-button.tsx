@@ -1,6 +1,7 @@
 import { FunctionComponent, MouseEvent, ReactNode } from "react";
 import { RoschButtonStyled, RoschButtonStyledProps } from "./rosch-button.style";
 import { RoschText } from "../rosch-text/rosch-text";
+import cx from "classnames";
 
 /**
  * Props for the `RoschButton` component.
@@ -52,7 +53,7 @@ export interface RoschButtonProps extends RoschButtonStyledProps {
  *
  * @returns {JSX.Element} A JSX element with styled button content.
  */
-const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Valider", onClick, disabled, ...props }) => {
+const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Valider", onClick, disabled, className, ...props }) => {
 
   /**
    * Determines the content to display inside the button.
@@ -65,7 +66,7 @@ const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Val
       return children;
     }
 
-    return <RoschText id="rosch-button-text">{label}</RoschText>;
+    return <RoschText id="rosch__button__text">{label}</RoschText>;
   };
 
   /**
@@ -82,7 +83,7 @@ const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Val
   };
 
   return (
-    <RoschButtonStyled disabled={disabled} onClick={handleClick} {...props}>
+    <RoschButtonStyled className={cx("rosch__button", className)} disabled={disabled} onClick={handleClick} {...props}>
       {displayButtonText()}
     </RoschButtonStyled>
   );

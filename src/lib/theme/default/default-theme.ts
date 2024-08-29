@@ -99,7 +99,9 @@ const defaultTheme : Theme = {
   },
   
   inputs: {
-
+    radius: "lg",
+    paddingHorizontal: "md",
+    paddingVertical: "md",
   },
 };
 

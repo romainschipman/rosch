@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chromatic-com/storybook": "^1.7.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/node": "^16.18.105",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
+    "classnames": "^2.5.1",
     "eslint-plugin-jest": "^27.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -24,7 +26,8 @@
     "lint": "eslint src --report-unused-disable-directives --max-warnings 0",
     "doc": "typedoc",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_c835b8dfc5f2240"
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +54,6 @@
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@chromatic-com/storybook": "^1.7.0",
     "@storybook/addon-docs": "^8.2.9",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
@@ -69,6 +71,7 @@
     "@typescript-eslint/parser": "^5.62.0",
     "babel-jest": "^29.7.0",
     "babel-plugin-transform-typescript": "^7.0.0-alpha.19",
+    "chromatic": "^11.7.1",
     "eslint": "^8.57.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-deprecation": "^3.0.0",
