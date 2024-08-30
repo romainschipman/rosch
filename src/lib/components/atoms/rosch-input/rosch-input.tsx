@@ -19,7 +19,7 @@ import { RoschText } from "../rosch-text/rosch-text";
  * @property {number} [maxLength=255] - Optional maximum number of characters allowed in the input.
  * @property {string} [name] - Optional name attribute for the input element, used for form submission.
  */
-interface RoschInputProps extends RoschInputStyledProps {
+export interface RoschInputProps extends RoschInputStyledProps {
   /**
    * A reference to the underlying input element.
    */
