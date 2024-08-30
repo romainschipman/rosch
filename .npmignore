@@ -3,3 +3,4 @@ src
 tests
 .vscode
 .DS_Store
+storybook-static

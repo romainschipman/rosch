@@ -1,46 +1,224 @@
-# Getting Started with Create React App
+# @myrosch/ui
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[@myrosch/ui](https://www.npmjs.com/package/@myrosch/ui) est une bibliothèque de composants UI qui vous permet de créer des interfaces utilisateurs élégantes et cohérentes en utilisant un système de thèmes fourni par le `RoschThemeProvider`. Le package inclut actuellement trois composants principaux : `Input`, `Text`, et `Button`.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+Vous pouvez installer le package via npm ou yarn :
 
-### `npm start`
+```bash
+npm install @myrosch/ui
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ou 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+yarn add @myrosch/ui
+```
 
-### `npm test`
+## Utilisation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Pour utiliser les composants @myrosch/ui dans votre projet, vous devez d'abord envelopper votre application avec le composant `RoschTheme` pour fournir un thème à vos composants.
 
-### `npm run build`
+### Exemple d'utilisation :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```typescript
+import React from 'react';
+import { RoschTheme, RoschText } from '@myrosch/ui';
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const theme = {
+  colors: {
+    primary: '#3498db',
+    secondary: '#2ecc71',
+    text: '#333',
+  },
+  fonts: {
+    main: 'Arial, sans-serif',
+  },
+  // Ajoutez d'autres paramètres de thème selon vos besoins
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const App = () => {
+  return (
+    <RoschTheme theme={theme}>
+      <div>
+        <RoschText>Bienvenue sur mon application</RoschText>
+      </div>
+    </RoschTheme>
+  );
+};
 
-### `npm run eject`
+export default App;
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Thématisation
+Le package @myrosch/ui utilise le composant RoschTheme pour permettre une personnalisation complète des composants via un thème global. Vous pouvez définir les couleurs, les polices, et d'autres styles globaux à appliquer sur tous les composants. un thème par defaut est fourni si aucun n'est fourni dans RoschTheme
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```typescript
+{
+  name: "default-theme",
+  colors: {
+    primary: {
+      lightest: "#cce5ff",
+      light: "#66b2ff",
+      base: "#007bff",
+      dark: "#0056b3",
+      darkest: "#003d80",
+    },
+    secondary: {
+      lightest: "#e2e3e5",
+      light: "#a6a9ad",
+      base: "#6c757d",
+      dark: "#494e52",
+      darkest: "#343a40",
+    },
+    success: {
+      lightest: "#d4edda",
+      light: "#5cd67e",
+      base: "#28a745",
+      dark: "#1e7b32",
+      darkest: "#155724",
+    },
+    danger: {
+      lightest: "#f8d7da",
+      light: "#ff6b75",
+      base: "#dc3545",
+      dark: "#a62630",
+      darkest: "#721c24",
+    },
+    warning: {
+      lightest: "#fff3cd",
+      light: "#ffdf5d",
+      base: "#ffc107",
+      dark: "#b38600",
+      darkest: "#856404",
+    },
+    info: {
+      lightest: "#d1ecf1",
+      light: "#5bc8e7",
+      base: "#17a2b8",
+      dark: "#11667f",
+      darkest: "#0c5460",
+    },
+    light: {
+      lightest: "#fefefe",
+      light: "#f8f9fa",
+      base: "#e2e3e5",
+      dark: "#c7c8c9",
+      darkest: "#818182",
+    },
+    dark: {
+      lightest: "#6c757d",
+      light: "#5a6268",
+      base: "#343a40",
+      dark: "#1d2124",
+      darkest: "#121416",
+    },
+  },
+  
+  textSizes: {
+    xs: "0.75rem", // 12px
+    sm: "0.875rem", // 14px
+    md: "1rem", // 16px
+    lg: "1.25rem", // 20px
+    xl: "1.5rem", // 24px
+    xxl: "2rem", // 32px
+  },
+  defaultTextSize: "md",
+  
+  spacings: {
+    xs: "0.25rem", // 4px
+    sm: "0.5rem", // 8px
+    md: "1rem", // 16px
+    lg: "1.5rem", // 24px
+    xl: "2rem", // 32px
+    xxl: "3rem", // 48px
+  },
+  defaultSpacing: "md",
+  
+  radiusSizes: {
+    none: "0px",
+    sm: "0.125rem", // 2px
+    md: "0.25rem", // 4px
+    lg: "0.5rem", // 8px
+    xl: "1rem", // 16px
+    xxl: "1.5rem", // 24px
+    pills: "50rem", // Pour les éléments en forme de pilule
+  },
+  defaultRadiusSize: "md",
+  
+  buttons: {
+    radius: "md",
+    paddingHorizontal: "xl",
+    paddingVertical: "md",
+  },
+  
+  inputs: {
+    radius: "lg",
+    paddingHorizontal: "md",
+    paddingVertical: "md",
+  },
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Composants disponible
 
-## Learn More
+### RoschText
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`RoschText` est un composant React simple et stylisé pour afficher du texte avec des options de personnalisation. Il permet d'appliquer des styles tels que le gras, le soulignement, la majuscule, et plus encore, tout en offrant la possibilité de définir la couleur et la taille du texte.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Utilisation
+
+Pour utiliser le composant RoschText, importez-le simplement depuis @rosch/ui :
+
+```typescript
+import { RoschText } from '@rosch/ui';
+```
+
+Le composant RoschText vous permet d'afficher du texte avec diverses options de style en utilisant les propriétés disponibles. Voici un exemple d'utilisation de base :
+
+```typescript
+    <RoschText bold={true} fontSize="lg" colorType="primary">
+        Bold and large text with primary color
+    </RoschText>
+```
+
+### RoschButton
+
+`RoschButton` est un composant React stylisé qui permet de créer des boutons personnalisés avec diverses options de style. Vous pouvez contrôler l'apparence du bouton, y compris sa couleur, sa taille, et son état (comme désactivé ou actif).
+
+#### Utilisation
+
+Pour utiliser le composant `RoschButton`, importez-le simplement depuis `@rosch/ui` :
+
+```typescript
+import { RoschButton } from '@rosch/ui';
+```
+
+Le composant `RoschButton` vous permet de créer des boutons avec différentes propriétés pour personnaliser leur apparence et leur comportement. Voici un exemple d'utilisation de base :
+
+```typescript
+<RoschButton colorType="primary" size="md">
+    Click Me
+</RoschButton>
+```
+
+### RoschInput
+
+`RoschInput` est un composant React stylisé qui permet de créer des champs de saisie de texte avec diverses options de personnalisation. Vous pouvez contrôler l'apparence de l'input, ainsi que son comportement (comme la gestion des états actifs ou désactivés).
+
+#### Utilisation
+
+Pour utiliser le composant `RoschInput`, importez-le simplement depuis `@rosch/ui` :
+
+```typescript
+import { RoschInput } from '@rosch/ui';
+```
+
+Le composant `RoschInput` vous permet de créer des champs de saisie de texte avec différentes propriétés pour personnaliser leur apparence et leur comportement. Voici un exemple d'utilisation de base :
+
+```typescript
+<RoschInput placeholder="Enter your text here" size="md" disabled={false} />
+```
+

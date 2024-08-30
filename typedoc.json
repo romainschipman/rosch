@@ -4,5 +4,5 @@
     ],
     "out": "./docs",
     "readme": "./DOC.md",
-    "exclude": ["**/*+(.test)+(.tsx|.ts)"]
+    "exclude": ["**/*+(.test)+(.tsx|.ts)", "storybook-static/**/*"]
 }
