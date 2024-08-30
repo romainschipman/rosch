@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render , screen } from "@testing-library/react";
 import { defaultTheme } from "../../theme/default/default-theme";
 import "jest-styled-components";
 import { RoschTheme } from "./rosch-theme";
