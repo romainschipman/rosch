@@ -1,10 +1,9 @@
-import { ColorType, Theme } from "../../../../../theme/theme.interface";
-
-//TODO: [COLOR] waiting for change token and generatePalette
+import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { Theme } from "../../../../../theme/theme.interface";
 
 interface GenerateTextColorProps {
     theme: Theme;
-    colorType?: ColorType;
+    colorVariant?: ThemeColorVariant;
 }
 
 /**
@@ -15,15 +14,25 @@ interface GenerateTextColorProps {
  *                   Returns an empty string if `colorType` is not provided.
  *
  */
-const generateTextColor = ({ theme, colorType } : GenerateTextColorProps) => {
-  if(!colorType) {
-    return "";
+const generateTextColor = ({ theme, colorVariant } : GenerateTextColorProps) => {
+
+  if(!colorVariant) {
+    colorVariant = "primary";
   }
-  if(!theme.colors[colorType]) {
-    return "";
+
+  if(theme.themeColors?.texts) {
+    const textColor = theme.themeColors.texts[colorVariant]?.default?.color;
+
+    if(!textColor) {
+      return "";
+    }
+
+    return `
+      color: ${textColor};
+    `;
   }
-  let colorPalette = theme.colors[colorType];
-  return `color: ${colorPalette.base};`;
+
+  return "";
 };
 
 export { generateTextColor };

@@ -1,65 +1,89 @@
-import { ColorType, Theme } from "../../../../../theme/theme.interface";
-
-//TODO: [COLOR] waiting for change token and generatePalette
+import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { Theme } from "../../../../../theme/theme.interface";
 
 interface GenerateButtonColorProps {
     theme: Theme;
-    colorType?: ColorType;
+    colorVariant?: ThemeColorVariant;
     outline?: boolean;
     disabled?: boolean;
 }
 
-const generateButtonColor = ({ theme, outline, disabled, colorType }: GenerateButtonColorProps) => {
-  if(!colorType || !theme.colors[colorType]) {
-    let backgroundColor = theme.colors.primary.base;
-    let color = theme.colors.light.lightest;
-    let border = "0";
-    if(outline) {
-      backgroundColor = theme.colors.light.lightest;
-      color = theme.colors.primary.base;
-      border = `0.05rem solid ${theme.colors.primary.base}`;
+/**
+ * Generates the CSS styles for a button based on the provided theme, color variant, and button states.
+ *
+ * @param {GenerateButtonColorProps} props - The properties including the theme, color variant, outline, and disabled states.
+ * @returns {string} A CSS string that styles the button according to the specified parameters. 
+ *                   Returns an empty string if the color variant or state is not found.
+ */
+const generateButtonColor = ({ theme, outline, disabled, colorVariant }: GenerateButtonColorProps) => {
+
+  if(!colorVariant) {
+    colorVariant = "primary";
+  }
+
+  const buttonColors = theme.themeColors?.buttons;
+  if(buttonColors) {
+    if(outline && !disabled) {
+
+      if(!buttonColors[colorVariant]?.default) {
+        return "";
+      }
+
+      return `
+      background-color: ${buttonColors[colorVariant]?.default?.color};
+      .rosch__text {
+        color: ${buttonColors[colorVariant]?.default?.onColor};
+      }
+      border: 0.05rem solid  ${buttonColors[colorVariant]?.default?.onColor};
+      `;
     }
-    if(disabled) {
-      backgroundColor = theme.colors.light.darkest;
-      color = theme.colors.light.base;
-      border = "0";    
+
+    if(outline && disabled) {
+
+      if(!buttonColors[colorVariant]?.disabled) {
+        return "";
+      }
+
+      return `
+      background-color: ${buttonColors[colorVariant]?.disabled?.color};
+      color: ${buttonColors[colorVariant]?.disabled?.onColor};
+      .rosch__text {
+        color: ${buttonColors[colorVariant]?.disabled?.onColor};
+      }
+      border: 0.05rem solid  ${buttonColors[colorVariant]?.disabled?.onColor};
+      `;
     }
-    if(disabled && outline) {
-      backgroundColor = theme.colors.light.base;
-      color = theme.colors.light.darkest;
-      border = `0.05rem solid ${theme.colors.light.darkest}`;    
+
+    if(!outline && disabled) {
+
+      if(!buttonColors[colorVariant]?.disabled) {
+        return "";
+      }
+
+      return `
+        background-color: ${buttonColors[colorVariant]?.disabled?.onColor};
+        color: ${buttonColors[colorVariant]?.disabled?.color};
+        .rosch__text {
+          color: ${buttonColors[colorVariant]?.disabled?.color};
+        }
+      `;
     }
+
+    if(!buttonColors[colorVariant]?.default) {
+      return "";
+    }
+
     return `
-        background-color: ${backgroundColor};
-        color: ${color};
-        border: ${border};
+      background-color: ${buttonColors[colorVariant]?.default?.onColor};
+      color: ${buttonColors[colorVariant]?.default?.color};
+      .rosch__text {
+        color: ${buttonColors[colorVariant]?.default?.color};
+      }
     `;
+
   }
 
-  let backgroundColor = theme.colors[colorType].base;
-  let color = theme.colors.light.lightest;
-  let border = "0";
-
-  if(outline) {
-    backgroundColor = theme.colors.light.lightest;
-    color = theme.colors[colorType].base;
-    border = `0.05rem solid ${theme.colors[colorType].base}`;
-  }
-  if(disabled) {
-    backgroundColor = theme.colors.light.darkest;
-    color = theme.colors.light.base;
-    border = "0";    
-  }
-  if(disabled && outline) {
-    backgroundColor = theme.colors.light.base;
-    color = theme.colors.light.darkest;
-    border = `0.05rem solid ${theme.colors.light.darkest}`;    
-  }
-  return `
-        background-color: ${backgroundColor};
-        color: ${color};
-        border: ${border};
-  `;
+  return "";
 };
 
 export { generateButtonColor };

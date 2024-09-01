@@ -1,9 +1,11 @@
-const parser = require("@typescript-eslint/parser");
-const tsPlugin = require("@typescript-eslint/eslint-plugin");
-const reactRefresh = require("eslint-plugin-react-refresh");
-const deprecation = require("eslint-plugin-deprecation");
+// eslint.config.js
 
-module.exports = [
+import parser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import reactRefresh from "eslint-plugin-react-refresh";
+import deprecation from "eslint-plugin-deprecation";
+
+export default [
   {
     files: ["src/**/*.{ts,tsx,js,jsx}"],
     languageOptions: {
@@ -15,7 +17,7 @@ module.exports = [
       "deprecation": deprecation,
     },
     rules: {
-      "deprecation/deprecation": "error", // Utilisation du plugin pour détecter les éléments dépréciés
+      "deprecation/deprecation": "error",
       "react-refresh/only-export-components": "warn",
       "semi": ["error", "always"],
       "quotes": ["error", "double"],
@@ -24,7 +26,7 @@ module.exports = [
       "eqeqeq": "error",
       "no-cond-assign": ["error", "always"],
       "no-prototype-builtins": "off",
-      "no-unused-vars": "off", // Let typescript rule do the job
+      "no-unused-vars": "off",
       "sort-imports": [
         "error",
         {

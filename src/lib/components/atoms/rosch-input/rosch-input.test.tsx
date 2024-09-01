@@ -1,66 +1,83 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { RoschInput } from "./rosch-input";
-import { generateCssProperties } from "../../../utils/generate-css-properties/generate-css-properties";
-import { generateInputColor } from "./helpers/generate-input-border-color/generate-input-color";
 import { generateInputSize } from "./helpers/generate-input-size/generate-input-size";
+import { generateInputColor } from "./helpers/generate-input-color/generate-input-color";
+import { generateCssProperties } from "../../../utils/generate-css-properties/generate-css-properties";
 
-jest.mock("../../../utils/generate-css-properties/generate-css-properties", () => ({
-  generateCssProperties: jest.fn(() => "mocked-css-properties")
+jest.mock("./helpers/generate-input-size/generate-input-size");
+jest.mock("./helpers/generate-input-color/generate-input-color");
+jest.mock("../../../utils/generate-css-properties/generate-css-properties");
+jest.mock("../rosch-text/rosch-text", () => ({
+  RoschText: ({ children } : any) => <p>{children}</p>
 }));
+describe("Unit test for RoschInput Component", () => {
 
-jest.mock("./helpers/generate-input-border-color/generate-input-color", () => ({
-  generateInputColor: jest.fn(() => "mocked-input-color")
-}));
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-jest.mock("./helpers/generate-input-size/generate-input-size", () => ({
-  generateInputSize: jest.fn(() => "mocked-input-size")
-}));
+  test("should render the input with the correct placeholder and correct label", () => {
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" label="username" />);
+    const inputElement = screen.getByPlaceholderText("Enter text here");
+    const labelElement = screen.getByText("username");
 
-describe("Unit test for RoschInput", () => {
-  test("should renders with label and placeholder", () => {
-    render(<RoschInput id="input" label="Username" placeholder="Enter your username" />);
-
-    const labelElement = screen.getByText("Username");
-    expect(labelElement).toBeInTheDocument();
-
-    const inputElement = screen.getByPlaceholderText("Enter your username");
     expect(inputElement).toBeInTheDocument();
+    expect(labelElement).toBeInTheDocument();
   });
 
-  test("should calls onChange when input value changes", () => {
-    const handleChange = jest.fn();
-
-    render(<RoschInput id="input" label="Username" placeholder="Enter your username" onChange={handleChange} />);
-
-    const inputElement : HTMLInputElement = screen.getByPlaceholderText("Enter your username");
-    fireEvent.change(inputElement, { target: { value: "new value" } } );
-
-    screen.getByPlaceholderText("Enter your username").dispatchEvent(new Event("input", { bubbles: true }));
-
-    expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveBeenCalledWith("new value");
+  test("should handle input value change", () => {
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" />);
+    const inputElement = screen.getByPlaceholderText("Enter text here");
+    
+    fireEvent.change(inputElement, { target: { value: "New value" } });
+    expect(inputElement).toHaveValue("New value");
   });
 
-  test("should renders with disabled state", () => {
-    render(<RoschInput id="test" label="Password" placeholder="Enter your password" disabled />);
+  test("should apply the correct size based on generateInputSize", () => {
+    (generateInputSize as jest.Mock).mockReturnValue({ height: "40px", width: "100%" });
 
-    const inputElement = screen.getByPlaceholderText("Enter your password");
-    expect(inputElement).toBeDisabled();
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" size="lg" />);
+    const inputElement = screen.getByPlaceholderText("Enter text here");
+
+    expect(generateInputSize).toHaveBeenCalled();
+    expect(inputElement).toHaveStyle("height: 40px");
+    expect(inputElement).toHaveStyle("width: 100%");
   });
 
-  test("should applies custom maxLength and type", () => {
-    render(<RoschInput id="test" label="PIN" placeholder="Enter your PIN" maxLength={4} type="password" />);
+  test("should apply the correct color based on generateInputColor", () => {
+    (generateInputColor as jest.Mock).mockReturnValue({ color: "black", backgroundColor: "white" });
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" />);
+    const inputElement = screen.getByPlaceholderText("Enter text here");
 
-    const inputElement = screen.getByPlaceholderText("Enter your PIN");
-    expect(inputElement).toHaveAttribute("maxLength", "4");
-    expect(inputElement).toHaveAttribute("type", "password");
+    expect(generateInputColor).toHaveBeenCalled();
+    expect(inputElement).toHaveStyle("color: black");
+    expect(inputElement).toHaveStyle("background-color: white");
   });
 
-  test("should applies mocked CSS properties", () => {
-    render(<RoschInput id="test" label="Test Label" placeholder="Test Placeholder" />);
+  test("should apply custom styles using generateCssProperties", () => {
+    (generateCssProperties as jest.Mock).mockReturnValue({ margin: "10px", padding: "5px" });
+
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" />);
+    const inputElement = screen.getByPlaceholderText("Enter text here");
 
     expect(generateCssProperties).toHaveBeenCalled();
-    expect(generateInputColor).toHaveBeenCalled();
-    expect(generateInputSize).toHaveBeenCalled();
+    expect(inputElement).toHaveStyle("margin: 10px");
+    expect(inputElement).toHaveStyle("padding: 5px");
+  });
+
+  test("should display an error message when invalid", () => {
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" error="Error occurred" />);
+    const errorMessage = screen.getByText("Error occurred");
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  test("should call onChange handler when value changes", () => {
+    const handleChange = jest.fn();
+    render(<RoschInput id="rosch-input-test" placeholder="Enter text here" onChange={handleChange} />);
+    
+    const inputElement = screen.getByPlaceholderText("Enter text here");
+    fireEvent.change(inputElement, { target: { value: "New value" } });
+    
+    expect(handleChange).toHaveBeenCalledTimes(1);
   });
 });

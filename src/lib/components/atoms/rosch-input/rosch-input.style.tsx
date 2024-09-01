@@ -3,7 +3,9 @@ import { CssProperties } from "../../../interfaces/css-properties.interface";
 import { generateCssProperties } from "../../../utils/generate-css-properties/generate-css-properties";
 import { TextSize } from "../../../theme/theme.interface";
 import { generateInputSize } from "./helpers/generate-input-size/generate-input-size";
-import { generateInputColor } from "./helpers/generate-input-border-color/generate-input-color";
+import { generateInputColor, generateInputLabelColor } from "./helpers/generate-input-color/generate-input-color";
+
+import { ThemeColorVariant } from "src/lib/theme/color.interface";
 
 /**
  * Props for the `RoschInputStyled` component.
@@ -17,6 +19,7 @@ import { generateInputColor } from "./helpers/generate-input-border-color/genera
  * @property {boolean} [disabled] - Optional property to disable the input field.
  * @property {boolean} [readOnly] - Optional property to render the input as read-only.
  * @property {string} [error] - Optional property to indicate an error state, typically used for displaying error messages.
+ * @property {ThemeColorVariant} [colorVariant] -  Optional property to apply a specific color type from the theme.
  */
 export interface RoschInputStyledProps extends CssProperties {
     /**
@@ -37,6 +40,10 @@ export interface RoschInputStyledProps extends CssProperties {
      * Optional property to indicate an error state, typically used for displaying error messages.
      */
     error?: string;
+    /**
+     * Optional property to indicate an error state, typically used for displaying error messages.
+     */
+    colorVariant?: ThemeColorVariant;
 }
 
 /**
@@ -49,26 +56,13 @@ export interface RoschInputStyledProps extends CssProperties {
  *
  * @param {RoschInputStyledProps} props - The properties to customize the input's appearance and behavior.
  * 
- * @example
- * ```tsx
- * <RoschInputStyled fontSize="lg" disabled>
- *   <input className="rosch__input" type="text" value="Disabled Input" />
- * </RoschInputStyled>
- * ```
- * 
- * @example
- * ```tsx
- * <RoschInputStyled fontSize="md" error="Invalid input">
- *   <input className="rosch__input" type="text" value="Some input" />
- * </RoschInputStyled>
- * ```
- * 
  * @returns {JSX.Element} A styled `div` element containing the input field and any additional content.
  */
 const RoschInputStyled = styled.div<RoschInputStyledProps>`
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
+    ${generateInputLabelColor}
     .rosch__input {
         ${(props) => generateCssProperties(props, props.theme.inputs)}
         ${generateInputSize}

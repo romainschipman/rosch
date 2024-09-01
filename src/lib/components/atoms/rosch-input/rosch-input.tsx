@@ -110,7 +110,7 @@ const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
     <RoschInputStyled
       {...styledProps}
     >
-      {label && <RoschText id="label-input" fontSize="xs">{label}</RoschText>}
+      {label && <RoschText className="rosch__input__label" id="label-input" fontSize="sm">{label}</RoschText>}
       <input
         ref={inputRef}
         type={type}
@@ -122,6 +122,7 @@ const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
         onChange={handleChange}
         placeholder={placeholder}
       />
+      <RoschText className="rosch__input__label" id="label-input" fontSize="xs">{props.error ?? ""}</RoschText>
     </RoschInputStyled>
 
   );

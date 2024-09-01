@@ -1,49 +1,56 @@
 import { generateTextColor } from "./generate-text-color";
-import { ColorType, Theme } from "../../../../../theme/theme.interface";
+import { Theme } from "../../../../../theme/theme.interface";
+import { ThemeColorVariant } from "src/lib/theme/color.interface";
 
 describe("Unit test for generateTextColor", () => {
-  let theme: Theme = {
-    name: "default",
-    colors: {
-      primary: { lightest: "#e0f7fa", light: "#b2ebf2", base: "#007bff", dark: "#004d40", darkest: "#00251a" },
-      secondary: { lightest: "#fce4ec", light: "#f8bbd0", base: "#6c757d", dark: "#880e4f", darkest: "#560027" },
-      success: { lightest: "#e8f5e9", light: "#a5d6a7", base: "#28a745", dark: "#2e7d32", darkest: "#1b5e20" },
-      danger: { lightest: "#ffebee", light: "#ef9a9a", base: "#dc3545", dark: "#c62828", darkest: "#b71c1c" },
-      warning: { lightest: "#fffde7", light: "#fff59d", base: "#ffc107", dark: "#fbc02d", darkest: "#f57f17" },
-      info: { lightest: "#e3f2fd", light: "#90caf9", base: "#17a2b8", dark: "#1976d2", darkest: "#0d47a1" },
-      light: { lightest: "#fafafa", light: "#f5f5f5", base: "#f8f9fa", dark: "#bdbdbd", darkest: "#616161" },
-      dark: { lightest: "#424242", light: "#212121", base: "#343a40", dark: "#000000", darkest: "#000000" },
-    }
-  } as Theme;;
 
+  const mockTheme = {
+    themeColors: {
+      texts: {
+        primary: {
+          default: { color: "#000000" },
+        },
+        secondary: {
+          default: { color: "#333333" },
+        },
+      },
+    },
+  } as Theme;
 
-
-  if(!theme) {
-    throw new Error("theme shouldn't be undefined");
-  }
-
-  test("should return the correct CSS color string for a valid colorType", () => {
-    const result = generateTextColor({ theme, colorType: "primary" });
-    expect(result).toBe("color: #007bff;");
+  test("should return the primary color when colorVariant is not provided", () => {
+    const css = generateTextColor({ theme: mockTheme });
+    expect(css).toBe(`
+      color: #000000;
+    `);
   });
 
-  test("should return an empty string if colorType is not provided", () => {
-    const result = generateTextColor({ theme });
-    expect(result).toBe("");
+  test("should return the color for the specified colorVariant", () => {
+    const css = generateTextColor({ theme: mockTheme, colorVariant: "secondary" });
+    expect(css).toBe(`
+      color: #333333;
+    `);
   });
 
-  test("should return the correct CSS color string for a different valid colorType", () => {
-    const result = generateTextColor({ theme, colorType: "secondary" });
-    expect(result).toBe("color: #6c757d;");
+  test("should return an empty string if themeColors.texts is undefined", () => {
+    const css = generateTextColor({ theme: { themeColors: {} } as Theme });
+    expect(css).toBe("");
   });
 
-  test("should handle undefined colorType by returning an empty string", () => {
-    const result = generateTextColor({ theme, colorType: undefined });
-    expect(result).toBe("");
+  test("should return an empty string if the colorVariant is not found in the theme", () => {
+    const css = generateTextColor({ theme: mockTheme, colorVariant: "tertiary" as ThemeColorVariant });
+    expect(css).toBe("");
   });
 
-  test("should handle an unexpected colorType gracefully", () => {
-    const result = generateTextColor({ theme, colorType: "unexpected" as ColorType });
-    expect(result).toBe("");
+  test("should return the primary color if colorVariant is undefined", () => {
+    const css = generateTextColor({ theme: mockTheme, colorVariant: undefined });
+    expect(css).toBe(`
+      color: #000000;
+    `);
   });
+
+  test("should handle a theme with no text colors defined", () => {
+    const css = generateTextColor({ theme: { themeColors: undefined } as Theme });
+    expect(css).toBe("");
+  });
+
 });

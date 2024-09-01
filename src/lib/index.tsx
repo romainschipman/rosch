@@ -13,4 +13,7 @@ export { RoschInput } from "./components/atoms/rosch-input/rosch-input";
 export type { RoschThemeProps } from "./components/rosch-theme/rosch-theme";
 export { RoschTheme } from "./components/rosch-theme/rosch-theme";
 
-export type { TextSize, RadiusSize, SpacingSize, ColorPalette, Theme } from "./theme/theme.interface";
+export type { TextSize, RadiusSize, SpacingSize, Theme } from "./theme/theme.interface";
+export type { ThemeColorPalette, ThemeColorVariant, ThemeColorStyles, ThemeState } from "./theme/color.interface";
+
+export type { CssProperties } from "./interfaces/css-properties.interface";

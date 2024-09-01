@@ -6,6 +6,13 @@ interface GenerateButtonSizeProps {
     size?: SpacingSize;
 }
 
+/**
+ * Generates the CSS styles for a button's size based on the provided theme and size.
+ *
+ * @param {GenerateButtonSizeProps} props - The properties including the theme and optional size.
+ * @returns {string} A CSS string that styles the button's padding and font size according to the specified size.
+ *                   Returns an empty string if `size` is not provided.
+*/
 const generateButtonSize = ({ theme, size } : GenerateButtonSizeProps) => {
   if(!size) {
     return "";

@@ -1,70 +1,88 @@
 import { generateButtonColor } from "./generate-button-color";
 import { Theme } from "../../../../../theme/theme.interface";
+import { ThemeColorVariant } from "src/lib/theme/color.interface";
 
 describe("generateButtonColor", () => {
-  const theme: Theme = {
-    colors: {
-      primary: { base: "#007bff", lightest: "#e7f1ff", darkest: "#0056b3", light: "#e7f1ff" },
-      light: { base: "#f8f9fa", lightest: "#ffffff", darkest: "#d6d8db", light: "#f8f9fa" },
-      success: { base: "#28a745", lightest: "#d4edda", darkest: "#155724" },
-      // Add other colors as needed
+
+  const mockTheme = {
+    themeColors: {
+      buttons: {
+        primary: {
+          default: { color: "#ffffff", onColor: "#007bff" },
+          disabled: { color: "#6c757d", onColor: "#e0e0e0" },
+        },
+        secondary: {
+          default: { color: "#ffffff", onColor: "#6c757d" },
+          disabled: { color: "#6c757d", onColor: "#e0e0e0" },
+        },
+      },
     },
-    // Add other theme properties if needed
   } as Theme;
 
-  test("should return primary button color by default when colorType is not provided", () => {
-    const css = generateButtonColor({ theme });
+  test("should return primary button styles when no colorVariant is provided", () => {
+    const css = generateButtonColor({ theme: mockTheme, outline: false, disabled: false });
     expect(css).toContain("background-color: #007bff;");
     expect(css).toContain("color: #ffffff;");
-    expect(css).toContain("border: 0;");
+    expect(css).toContain(".rosch__text {");
+    expect(css).toContain("color: #ffffff;");
   });
 
-  test("should apply outline styles correctly", () => {
-    const css = generateButtonColor({ theme, outline: true });
+  test("should return the styles for an outlined button", () => {
+    const css = generateButtonColor({ theme: mockTheme, outline: true, disabled: false, colorVariant: "primary" });
     expect(css).toContain("background-color: #ffffff;");
     expect(css).toContain("color: #007bff;");
-    expect(css).toContain("border: 0.05rem solid #007bff;");
+    expect(css).toContain("border: 0.05rem solid  #007bff;");
   });
 
-  test("should apply disabled styles correctly", () => {
-    const css = generateButtonColor({ theme, disabled: true });
-    expect(css).toContain("background-color: #d6d8db;");
-    expect(css).toContain("color: #f8f9fa;");
-    expect(css).toContain("border: 0;");
+  test("should return the styles for an outlined and disabled button", () => {
+    const css = generateButtonColor({ theme: mockTheme, outline: true, disabled: true, colorVariant: "primary" });
+    expect(css).toContain("background-color: #6c757d;");
+    expect(css).toContain("color: #e0e0e0;");
+    expect(css).toContain("border: 0.05rem solid  #e0e0e0;");
   });
 
-  test("should apply disabled and outline styles correctly", () => {
-    const css = generateButtonColor({ theme, disabled: true, outline: true });
-    expect(css).toContain("background-color: #f8f9fa;");
-    expect(css).toContain("color: #d6d8db;");
-    expect(css).toContain("border: 0.05rem solid #d6d8db;");
+  test("should return the styles for a non-outlined and disabled button", () => {
+    const css = generateButtonColor({ theme: mockTheme, outline: false, disabled: true, colorVariant: "primary" });
+    expect(css).toContain("background-color: #e0e0e0;");
+    expect(css).toContain("color: #6c757d;");
   });
 
-  test("should return color based on the provided colorType", () => {
-    const css = generateButtonColor({ theme, colorType: "success" });
-    expect(css).toContain("background-color: #28a745;");
+  test("should return the styles for a secondary button", () => {
+    const css = generateButtonColor({ theme: mockTheme, outline: false, disabled: false, colorVariant: "secondary" });
+    expect(css).toContain("background-color: #6c757d;");
     expect(css).toContain("color: #ffffff;");
-    expect(css).toContain("border: 0;");
   });
 
-  test("should apply outline styles with colorType correctly", () => {
-    const css = generateButtonColor({ theme, colorType: "success", outline: true });
-    expect(css).toContain("background-color: #ffffff;");
-    expect(css).toContain("color: #28a745;");
-    expect(css).toContain("border: 0.05rem solid #28a745;");
+  test("should return undefined if themeColors.buttons is undefined", () => {
+    const css = generateButtonColor({ theme: { themeColors: {} } as Theme });
+    expect(css).toBe("");
   });
 
-  test("should apply disabled styles with colorType correctly", () => {
-    const css = generateButtonColor({ theme, colorType: "success", disabled: true });
-    expect(css).toContain("background-color: #d6d8db;");
-    expect(css).toContain("color: #f8f9fa;");
-    expect(css).toContain("border: 0;");
+  test("should return undefined if colorVariant is not found", () => {
+    const css = generateButtonColor({ theme: mockTheme, colorVariant: "tertiary" as ThemeColorVariant });
+    expect(css).toBe("");
   });
 
-  test("should apply disabled and outline styles with colorType correctly", () => {
-    const css = generateButtonColor({ theme, colorType: "success", disabled: true, outline: true });
-    expect(css).toContain("background-color: #f8f9fa;");
-    expect(css).toContain("color: #d6d8db;");
-    expect(css).toContain("border: 0.05rem solid #d6d8db;");
+  test("should return undefined if colorVariant is not found (outline: true, disabled: false)", () => {
+    const css = generateButtonColor({ theme: mockTheme, colorVariant: "tertiary" as ThemeColorVariant, outline: true });
+    expect(css).toBe("");
   });
+
+  test("should return undefined if colorVariant is not found (outline: true, disabled: true)", () => {
+    const css = generateButtonColor({ theme: mockTheme, colorVariant: "tertiary" as ThemeColorVariant, outline: true, disabled: true });
+    expect(css).toBe("");
+  });
+
+  test("should return undefined if colorVariant is not found (outline: false, disabled: true)", () => {
+    const css = generateButtonColor({ theme: mockTheme, colorVariant: "tertiary" as ThemeColorVariant, disabled: true });
+    expect(css).toBe("");
+  });
+
+
+  test("should return primary styles if colorVariant is undefined", () => {
+    const css = generateButtonColor({ theme: mockTheme });
+    expect(css).toContain("background-color: #007bff;");
+    expect(css).toContain("color: #ffffff;");
+  });
+
 });

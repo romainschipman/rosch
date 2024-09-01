@@ -55,12 +55,6 @@ export interface RoschButtonProps extends RoschButtonStyledProps {
  */
 const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Valider", onClick, disabled, className, ...props }) => {
 
-  /**
-   * Determines the content to display inside the button.
-   * If `children` is provided, it is rendered. Otherwise, the `label` prop is used.
-   *
-   * @returns {ReactNode} The content to be rendered inside the button.
-   */
   const displayButtonText = () => {
     if(!!children) {
       return children;
@@ -69,13 +63,7 @@ const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Val
     return <RoschText id="rosch__button__text">{label}</RoschText>;
   };
 
-  /**
-   * Handles the button click event.
-   * This function checks if the button is not disabled and whether an `onClick` handler is provided.
-   * If both conditions are met, it triggers the `onClick` handler with the event.
-   *
-   * @param {MouseEvent<HTMLButtonElement>} e - The event triggered by the user's click on the button.
-  */
+
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if(!disabled && !!onClick) {
       onClick(e);
@@ -83,7 +71,12 @@ const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Val
   };
 
   return (
-    <RoschButtonStyled className={cx("rosch__button", className)} disabled={disabled} onClick={handleClick} {...props}>
+    <RoschButtonStyled
+      className={cx("rosch__button", className)}
+      disabled={disabled}
+      onClick={handleClick} 
+      {...props}
+    >
       {displayButtonText()}
     </RoschButtonStyled>
   );
