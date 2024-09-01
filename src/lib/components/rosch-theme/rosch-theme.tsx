@@ -2,6 +2,8 @@ import { FunctionComponent, ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 import { Theme } from "../../theme/theme.interface";
 import { defaultTheme } from "../../theme/default/default-theme";
+import { ThemeColorPalette } from "../../theme/color.interface";
+import { generateColorsPalette } from "../../utils/generate-colors-palette/generate-colors-palette";
 
 /**
  * Props for the RoschTheme component.
@@ -12,6 +14,7 @@ import { defaultTheme } from "../../theme/default/default-theme";
  */
 export interface RoschThemeProps {
     theme?: Theme
+    colors?: ThemeColorPalette
     children: ReactNode
 }
 
@@ -22,14 +25,16 @@ export interface RoschThemeProps {
  * @param {RoschThemeProps} props - The props for the component.
  * @returns {React.ReactElement} The themed application wrapper.
  */
-const RoschTheme : FunctionComponent<RoschThemeProps> = ({ theme, children }) => {
+const RoschTheme : FunctionComponent<RoschThemeProps> = ({ theme, colors, children }) => {
 
   if(!theme) {
     theme = defaultTheme;
   }
 
+  const themeColors = generateColorsPalette(colors);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={{ ...theme, themeColors }}>
       {children}
     </ThemeProvider>
   );

@@ -1,14 +1,6 @@
 import { SpacingSize, TextSize, Theme } from "../../../../../theme/theme.interface";
 import { generateFontSize } from "../../../../../utils/generate-font-size/generate-font-size";
 
-/**
- * Props for the `generateInputSize` function.
- * 
- * @interface GenerateInputSizeProps
- * @property {Theme} theme - The theme object containing spacing and text size information.
- * @property {SpacingSize} [size] - Optional size property to determine padding and spacing.
- * @property {TextSize} [fontSize] - Optional font size property to determine the font size.
-*/
 interface GenerateInputSizeProps {
     theme: Theme;
     size?: SpacingSize;

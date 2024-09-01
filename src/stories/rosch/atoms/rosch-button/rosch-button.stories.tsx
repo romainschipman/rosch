@@ -32,6 +32,6 @@ export const DisabledButton: Story = {
 export const CustomChildren: Story = {
   args: {
     children: <RoschText id="text-button" bold={true}>Custom children</RoschText>,
-    colorType: "warning"
+    colorVariant: "warning"
   },
 };

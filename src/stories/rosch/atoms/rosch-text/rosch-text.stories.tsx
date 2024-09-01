@@ -26,6 +26,7 @@ export const LargeTextUppercase: Story = {
   args: {
     fontSize: "xxl",
     uppercase: true,
+    colorVariant: "danger",
     children: "Large Text Uppercase"
   },
 };

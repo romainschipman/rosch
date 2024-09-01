@@ -34,7 +34,7 @@ describe("RoschButton", () => {
   });
 
   test.skip("should apply primary color and outline styles", () => {
-    render(<RoschButton id="outline-button" colorType="primary" outline><span>Primary Outline</span></RoschButton>);
+    render(<RoschButton id="outline-button" colorVariant="primary" outline><span>Primary Outline</span></RoschButton>);
     const buttonElement = screen.getByText("Primary Outline");
     expect(generateButtonColor).toHaveBeenCalled();
     expect(buttonElement).toHaveStyle(`

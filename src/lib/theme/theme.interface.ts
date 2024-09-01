@@ -1,4 +1,5 @@
 import { CssProperties } from "../interfaces/css-properties.interface";
+import { ThemeColorPalette } from "./color.interface";
 
 /**
  * Type representing possible text sizes in the theme.
@@ -21,35 +22,6 @@ export type SpacingSize = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
  */
 export type RadiusSize = "none" | "sm" | "md" | "lg" | "xl" | "xxl" | "pills";
 
-/**
- * Represents the possible color types used in the theme.
- * 
- * This type defines a set of predefined color names that can be used across the application
- * to apply consistent styling. Each value corresponds to a color palette defined in the theme.
- *
- * @typedef {"primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark"} ColorType
- * 
- */
-export type ColorType = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
-
-/**
- * Represents a color palette within the theme.
- * A structure defining a color palette with multiple shades, from the lightest to the darkest.
- * @interface ColorPalette
- * 
- * @property {string} lightest - The lightest shade of the color.
- * @property {string} light - A light shade of the color.
- * @property {string} base - The base color.
- * @property {string} dark - A dark shade of the color.
- * @property {string} darkest - The darkest shade of the color.
- */
-export interface ColorPalette {
-    lightest: string;
-    light: string;
-    base: string;
-    dark: string;
-    darkest: string;
-}
 
 /**
  * Represents the structure of the application's theme.
@@ -85,7 +57,11 @@ export interface ColorPalette {
  */
 export interface Theme {
     name: string;
-    colors: Record<ColorType, ColorPalette>;
+    /**
+     * @deprecated Colors will be remove soon
+     */
+    colors: any;
+    themeColors?: ThemeColorPalette;
     textSizes: Record<TextSize, string>;
     defaultTextSize: TextSize;
     spacings: Record<SpacingSize, string>;
