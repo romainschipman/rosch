@@ -60,7 +60,7 @@ export interface Theme {
     /**
      * @deprecated Colors will be remove soon
      */
-    colors: any;
+    colors?: any;
     themeColors?: ThemeColorPalette;
     textSizes: Record<TextSize, string>;
     defaultTextSize: TextSize;

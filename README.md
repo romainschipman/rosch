@@ -27,20 +27,16 @@ import React from 'react';
 import { RoschTheme, RoschText } from '@myrosch/ui';
 
 const theme = {
-  colors: {
-    primary: '#3498db',
-    secondary: '#2ecc71',
-    text: '#333',
-  },
-  fonts: {
-    main: 'Arial, sans-serif',
-  },
-  // Ajoutez d'autres paramètres de thème selon vos besoins
+  // Ajoutez votre configuration pour le thème ici
 };
+
+const colors = {
+  // Ajoutez votre palette de couleurs ici
+}
 
 const App = () => {
   return (
-    <RoschTheme theme={theme}>
+    <RoschTheme theme={theme} colors={colors}>
       <div>
         <RoschText>Bienvenue sur mon application</RoschText>
       </div>
@@ -52,70 +48,11 @@ export default App;
 ```
 
 ## Thématisation
-Le package @myrosch/ui utilise le composant RoschTheme pour permettre une personnalisation complète des composants via un thème global. Vous pouvez définir les couleurs, les polices, et d'autres styles globaux à appliquer sur tous les composants. un thème par defaut est fourni si aucun n'est fourni dans RoschTheme
+Le package @myrosch/ui utilise le composant RoschTheme pour permettre une personnalisation complète des composants via un thème global. Vous pouvez définir les styles globaux à appliquer sur tous les composants. un thème par defaut est fourni si aucun n'est fourni dans RoschTheme
 
 ```typescript
 {
-  name: "default-theme",
-  colors: {
-    primary: {
-      lightest: "#cce5ff",
-      light: "#66b2ff",
-      base: "#007bff",
-      dark: "#0056b3",
-      darkest: "#003d80",
-    },
-    secondary: {
-      lightest: "#e2e3e5",
-      light: "#a6a9ad",
-      base: "#6c757d",
-      dark: "#494e52",
-      darkest: "#343a40",
-    },
-    success: {
-      lightest: "#d4edda",
-      light: "#5cd67e",
-      base: "#28a745",
-      dark: "#1e7b32",
-      darkest: "#155724",
-    },
-    danger: {
-      lightest: "#f8d7da",
-      light: "#ff6b75",
-      base: "#dc3545",
-      dark: "#a62630",
-      darkest: "#721c24",
-    },
-    warning: {
-      lightest: "#fff3cd",
-      light: "#ffdf5d",
-      base: "#ffc107",
-      dark: "#b38600",
-      darkest: "#856404",
-    },
-    info: {
-      lightest: "#d1ecf1",
-      light: "#5bc8e7",
-      base: "#17a2b8",
-      dark: "#11667f",
-      darkest: "#0c5460",
-    },
-    light: {
-      lightest: "#fefefe",
-      light: "#f8f9fa",
-      base: "#e2e3e5",
-      dark: "#c7c8c9",
-      darkest: "#818182",
-    },
-    dark: {
-      lightest: "#6c757d",
-      light: "#5a6268",
-      base: "#343a40",
-      dark: "#1d2124",
-      darkest: "#121416",
-    },
-  },
-  
+  name: "default-theme",  
   textSizes: {
     xs: "0.75rem", // 12px
     sm: "0.875rem", // 14px
@@ -160,6 +97,62 @@ Le package @myrosch/ui utilise le composant RoschTheme pour permettre une person
   },
 }
 ```
+
+### Palette de couleurs par défaut
+
+La palette de couleurs est définie de manière centralisée pour garantir une cohérence dans l'apparence de vos composants.
+
+```typescript
+const defaultThemeColor = {
+  buttons: {
+    primary: {
+      default: {
+        onColor: '#ffffff',
+        color: '#007bff',
+      },
+      disabled: {
+        onColor: '#e2e6ea',
+        color: '#6c757d',
+      },
+    },
+    secondary: {
+      default: {
+        onColor: '#ffffff',
+        color: '#6c757d',
+      },
+      disabled: {
+        onColor: '#e2e6ea',
+        color: '#adb5bd',
+      },
+    },
+  },
+  inputs: {
+    primary: {
+      default: {
+        onColor: '#ffffff',
+        color: '#007bff',
+      },
+      disabled: {
+        onColor: '#e9ecef',
+        color: '#6c757d',
+      },
+    },
+  },
+  texts: {
+    primary: {
+      default: {
+        color: '#007bff',
+      },
+    },
+    secondary: {
+      default: {
+        color: '#6c757d',
+      },
+    },
+  },
+};
+```
+
 
 
 ## Composants disponible
