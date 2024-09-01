@@ -7,11 +7,11 @@ import classNames from "classnames";
  * 
  * @interface RoschTextProps
  * @extends {RoschTextStyledProps}
- * @property {string} children - The text content to be displayed.
+ * @property {string} children - The content to be rendered inside the text component.
  */
 export interface RoschTextProps extends RoschTextStyledProps {
   /**
-   * The text content to be displayed.
+   * The content to be rendered inside the text component.
    */
     children: string
 }
@@ -22,7 +22,6 @@ export interface RoschTextProps extends RoschTextStyledProps {
  * and rendering any children within the styled text element.
  *
  * @param {RoschTextProps} props - The properties passed to the component.
- * @param {React.ReactNode} props.children - The content to be rendered inside the text component.
  *
  * @example
  * ```tsx

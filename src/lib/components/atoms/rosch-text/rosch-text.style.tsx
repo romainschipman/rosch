@@ -45,7 +45,7 @@ export interface RoschTextStyledProps extends CssProperties {
  * dynamic styles based on the provided props and theme.
  *
  */
-const RoschTextStyled = styled.text<RoschTextStyledProps>`
+const RoschTextStyled = styled.span<RoschTextStyledProps>`
     ${generateCssProperties}
     ${generateTextDecoration}
     ${generateTextColor}

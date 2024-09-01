@@ -46,7 +46,6 @@ describe("Unit test for RoschInput Component", () => {
 
   test("should apply the correct color based on generateInputColor", () => {
     (generateInputColor as jest.Mock).mockReturnValue({ color: "black", backgroundColor: "white" });
-
     render(<RoschInput id="rosch-input-test" placeholder="Enter text here" />);
     const inputElement = screen.getByPlaceholderText("Enter text here");
 

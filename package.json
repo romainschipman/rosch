@@ -19,7 +19,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@chromatic-com/storybook": "^1.7.0",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^13.5.0",
     "@types/node": "^16.18.105",
     "classnames": "^2.5.1",
