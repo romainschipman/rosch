@@ -51,7 +51,7 @@ const generateInputColor = ({ theme, colorVariant, readOnly, error }: GenerateIn
     cssProprerties += `
             outline: 0.05rem solid ${inputColors[colorVariant]?.read_only?.onColor};
             &:focus {
-                outline: 0.1rem solid ${inputColors[colorVariant]?.default?.onColor};
+                outline: 0.1rem solid ${inputColors[colorVariant]?.focus?.onColor};
             }
             &:disabled {
                 outline: 0.05rem solid ${inputColors[colorVariant]?.disabled?.onColor};
@@ -62,7 +62,7 @@ const generateInputColor = ({ theme, colorVariant, readOnly, error }: GenerateIn
 
   cssProprerties += `
         &:focus {
-            outline: 0.1rem solid ${inputColors[colorVariant]?.default?.onColor};
+            outline: 0.05rem solid ${inputColors[colorVariant]?.focus?.color};
         }
 
         &:disabled {

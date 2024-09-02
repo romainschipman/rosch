@@ -43,7 +43,7 @@ describe("Unit test for generateInputColor", () => {
     const css = generateInputColor({ theme: mockTheme, colorVariant: "primary", readOnly: true });
     expect(css).toContain("outline: 0.05rem solid #dddddd;");
     expect(css).toContain("&:focus {");
-    expect(css).toContain("outline: 0.1rem solid #ffffff;");
+    expect(css).toContain("outline: 0.05rem solid #777777;");
   });
 
   test("should return the outline color for disabled state when readOnly is true", () => {
