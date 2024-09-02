@@ -1,4 +1,4 @@
-import { FormEvent, FunctionComponent, RefObject } from "react";
+import { FormEvent, FunctionComponent, LegacyRef } from "react";
 import classNames from "classnames";
 import { RoschInputStyled, RoschInputStyledProps } from "./rosch-input.style";
 import { RoschText } from "../rosch-text/rosch-text";
@@ -15,6 +15,7 @@ import { RoschText } from "../rosch-text/rosch-text";
  * @property {string} [label] - Optional label text displayed above the input.
  * @property {(value: string) => void} [onChange] - Optional callback function triggered when the input value changes.
  * @property {string} [placeholder] - Optional placeholder text displayed inside the input when it is empty.
+ * @property {string} [value] - The input value.
  * @property {"text" | "password"} [type="text"] - The type of input field, determining the nature of the data expected.
  * @property {number} [maxLength=255] - Optional maximum number of characters allowed in the input.
  * @property {string} [name] - Optional name attribute for the input element, used for form submission.
@@ -23,7 +24,7 @@ export interface RoschInputProps extends RoschInputStyledProps {
   /**
    * A reference to the underlying input element.
    */
-  inputRef?: RefObject<HTMLInputElement>;
+  inputRef?: LegacyRef<HTMLInputElement>;
   /**
    * Optional label text displayed above the input.
    */
@@ -34,6 +35,10 @@ export interface RoschInputProps extends RoschInputStyledProps {
    * @returns void;
    */
   onChange?: (value: string) => void;
+  /**
+   * The input value.
+   */
+  value?: string;
   /**
    * Optional placeholder text displayed inside the input when it is empty.
    */
@@ -97,6 +102,7 @@ const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
     inputRef,
     type = "text",
     maxLength = 255,
+    value,
     ...styledProps
   } = props;
 
@@ -117,6 +123,7 @@ const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
         className={classNames("rosch__input")}
         maxLength={maxLength}
         name={name}
+        value={value}
         readOnly={props.readOnly}
         disabled={props.disabled}
         onChange={handleChange}
