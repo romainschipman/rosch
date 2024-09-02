@@ -1,6 +1,6 @@
 import { generateButtonColor } from "./generate-button-color";
 import { Theme } from "../../../../../theme/theme.interface";
-import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { ThemeColorVariant } from "../../../../../theme/color.interface";
 
 describe("generateButtonColor", () => {
 

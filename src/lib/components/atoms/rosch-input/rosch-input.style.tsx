@@ -5,7 +5,7 @@ import { TextSize } from "../../../theme/theme.interface";
 import { generateInputSize } from "./helpers/generate-input-size/generate-input-size";
 import { generateInputColor, generateInputLabelColor } from "./helpers/generate-input-color/generate-input-color";
 
-import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { ThemeColorVariant } from "../../../theme/color.interface";
 
 /**
  * Props for the `RoschInputStyled` component.

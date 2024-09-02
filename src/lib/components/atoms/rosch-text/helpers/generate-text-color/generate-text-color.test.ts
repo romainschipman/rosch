@@ -1,6 +1,6 @@
 import { generateTextColor } from "./generate-text-color";
 import { Theme } from "../../../../../theme/theme.interface";
-import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { ThemeColorVariant } from "../../../../../theme/color.interface";
 
 describe("Unit test for generateTextColor", () => {
 

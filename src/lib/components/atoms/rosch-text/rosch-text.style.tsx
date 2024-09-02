@@ -5,7 +5,7 @@ import { TextSize } from "../../../theme/theme.interface";
 import { generateTextDecoration } from "./helpers/generate-text-decoration/generate-text-decoration";
 import { generateTextColor } from "./helpers/generate-text-color/generate-text-color";
 import { generateTextFontSize } from "./helpers/generate-text-font-size/generate-text-font-size";
-import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { ThemeColorVariant } from "../../../theme/color.interface";
 
 /**
  * Interface for the props of the `RoschTextStyled` component.

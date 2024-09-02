@@ -1,7 +1,6 @@
 import { generateInputSize } from "./generate-input-size";
-import { Theme } from "../../../../../theme/theme.interface";
+import { SpacingSize, Theme } from "../../../../../theme/theme.interface";
 import { generateFontSize } from "../../../../../utils/generate-font-size/generate-font-size";
-import { SpacingSize } from "dist";
 
 jest.mock("../../../../../utils/generate-font-size/generate-font-size");
 
