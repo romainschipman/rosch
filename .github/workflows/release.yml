@@ -35,16 +35,16 @@ jobs:
         run: |
           # Check for labels and set the bump type accordingly
           if git log -1 --pretty=%B | grep -q 'major'; then
-            echo "::set-output name=bump_type::major"
+            echo "bump_type=major" >> $GITHUB_ENV
           elif git log -1 --pretty=%B | grep -q 'minor'; then
-            echo "::set-output name=bump_type::minor"
+            echo "bump_type=minor" >> $GITHUB_ENV
           else
-            echo "::set-output name=bump_type::patch"
+            echo "bump_type=patch" >> $GITHUB_ENV
           fi
 
       - name: Bump version and create changelog
         run: |
-          npm version ${{ steps.version.outputs.bump_type }} -m "chore(release): bump version to %s"
+          npm version ${{ env.bump_type }} -m "chore(release): bump version to %s"
           git push --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
