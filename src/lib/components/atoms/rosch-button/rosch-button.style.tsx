@@ -3,7 +3,7 @@ import { CssProperties } from "../../../interfaces/css-properties.interface";
 import { generateCssProperties } from "../../../utils/generate-css-properties/generate-css-properties";
 import { generateButtonColor } from "./helpers/generate-button-color/generate-button-color";
 import { generateButtonSize } from "./helpers/generate-button-size/generate-button-size";
-import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { ThemeColorVariant } from "../../../theme/color.interface";
 
 /**
  * Interface for the props of the `RoschButtonStyled` component.

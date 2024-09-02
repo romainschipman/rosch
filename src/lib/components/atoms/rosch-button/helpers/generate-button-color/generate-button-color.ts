@@ -1,4 +1,4 @@
-import { ThemeColorVariant } from "src/lib/theme/color.interface";
+import { ThemeColorVariant } from "../../../../../theme/color.interface";
 import { Theme } from "../../../../../theme/theme.interface";
 
 interface GenerateButtonColorProps {
