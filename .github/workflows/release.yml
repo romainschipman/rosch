@@ -7,6 +7,7 @@ on:
 
 jobs:
   release:
+    if: "!contains(github.event.head_commit.message, 'chore(release)')"
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +27,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.email "romain.schipman@gmail.com"
+          git config --global user.email "pro.romain.schipman@gmail.com"
           git config --global user.name "Rosch Bot"
 
       - name: Determine version bump
