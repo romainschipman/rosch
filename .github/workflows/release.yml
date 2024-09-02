@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -24,8 +26,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.email "pro.romain.schipman@gmail.com"
-          git config --global user.name "Romain Schipman"
+          git config --global user.email "romain.schipman@gmail.com"
+          git config --global user.name "Rosch Bot"
 
       - name: Determine version bump
         id: version
@@ -43,6 +45,8 @@ jobs:
         run: |
           npm version ${{ steps.version.outputs.bump_type }} -m "chore(release): bump version to %s"
           git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Publish to npm
         run: npm publish --access public
