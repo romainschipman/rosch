@@ -1,0 +1,35 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as RoschTableStories from './rosch-table.stories';
+
+<Meta of={RoschTableStories} />
+
+# RoschTable
+
+The **`RoschTable`** component is a highly customizable table component that allows you to display dynamic data in a flexible way. It supports column reordering, custom rendering of cells, and the display of complex data types through the `RoschTableCell` and `RoschTableHeader` components.
+
+
+<Canvas layout="centered" />
+
+## Props
+<Controls of={RoschTableStories.DefaultTable} />
+
+---
+
+
+## Example
+
+```tsx
+<RoschTable
+  data={[
+    { id: 1, name: "John Doe", isActive: true },
+    { id: 2, name: "Jane Doe", isActive: false }
+  ]}
+  columnsOrder={['id', 'name', 'isActive']}
+  enableColumnOrder={true}
+>
+  <RoschTable.Header columnNames={{ id: "ID", name: "Name", isActive: "Status" }} />
+  <RoschTable.Cell field="isActive" renderElement={(isActive) => (
+    <StatusIndicator isActive={isActive} />
+  )} />
+</RoschTable>
+```

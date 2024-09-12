@@ -1,0 +1,12 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as RoschCellStories from './rosch-cell.stories';
+
+<Meta of={RoschCellStories} />
+
+# Cell
+
+The Cell component allows for custom rendering of the content in each column. The field prop specifies which field from the data should be displayed, and renderElement can be used to customize the rendering of this field.
+## Props
+<Controls of={RoschCellStories.DefaultCell} />
+
+---

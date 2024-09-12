@@ -3,10 +3,13 @@ import react from '@vitejs/plugin-react';
 import * as path from 'path';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react()
+  ],
   resolve: {
     alias: {
       react: path.resolve('./node_modules/react'),
+      'styled-components': path.resolve('./node_modules/styled-components'),
     },
   },
   build: {
@@ -26,4 +29,6 @@ export default defineConfig({
       },
     },
   },
+
+  root: '.',
 });
