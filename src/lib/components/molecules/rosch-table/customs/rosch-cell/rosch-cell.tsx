@@ -20,7 +20,7 @@ export interface RoschCellProps<T> {
     /**
      * A function that renders the content of the cell based on the field value or row data..
      * @param element The value associated with the field.
-     * @returns 
+     * @returns {ReactNode | ReactNode[]}
      */
     renderElement: (element: T) => (ReactNode | ReactNode[]);
     /**
