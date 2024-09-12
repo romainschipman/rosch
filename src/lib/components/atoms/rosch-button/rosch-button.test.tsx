@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { RoschButton } from "./rosch-button";
-import { generateButtonColor } from "./helpers/generate-button-color/generate-button-color";
 
 // Mock des fonctions
 jest.mock("../../../utils/generate-font-size/generate-font-size", () => ({
@@ -31,17 +30,6 @@ describe("RoschButton", () => {
     render(<RoschButton id="custom-button"><span>Custom Content</span></RoschButton>);
     const buttonElement = screen.getByText("Custom Content");
     expect(buttonElement).toBeInTheDocument();
-  });
-
-  test.skip("should apply primary color and outline styles", () => {
-    render(<RoschButton id="outline-button" colorVariant="primary" outline><span>Primary Outline</span></RoschButton>);
-    const buttonElement = screen.getByText("Primary Outline");
-    expect(generateButtonColor).toHaveBeenCalled();
-    expect(buttonElement).toHaveStyle(`
-      background-color: #007bff;
-      color: #ffffff;
-      border: 0;
-    `);
   });
 
   test("should call onClick handler when button is clicked", () => {

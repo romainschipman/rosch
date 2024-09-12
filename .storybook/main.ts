@@ -2,9 +2,10 @@ import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-
+  core: {
+    builder: '@storybook/builder-vite',
+  },
   addons: [
-    "@storybook/preset-create-react-app",
     "@storybook/addon-onboarding",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -27,4 +28,5 @@ const config: StorybookConfig = {
     reactDocgen: "react-docgen-typescript"
   }
 };
+
 export default config;

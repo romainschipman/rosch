@@ -52,12 +52,4 @@ describe("Unit test for generateTextFontSize", () => {
           font-size: 16px;
       `);
   });
-
-  test.skip("should handle undefined textSizes gracefully", () => {
-    const customTheme = { ...theme, textSizes: undefined };
-    const css = generateTextFontSize({ theme: customTheme as any, fontSize: "lg" });
-    expect(css).toBe(`
-          font-size: 16px;
-      `);
-  });
 });
