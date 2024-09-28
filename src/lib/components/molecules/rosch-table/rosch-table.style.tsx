@@ -14,8 +14,7 @@ const RoschTableStyled = styled.table`
         border:0;
     }
     td, th {
-        min-width: 10rem;
-        padding: 1rem;
+        padding: 1rem 1.5rem;
     }
 `;
 

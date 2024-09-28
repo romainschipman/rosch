@@ -13,7 +13,7 @@ export interface RoschTextProps extends RoschTextStyledProps {
   /**
    * The content to be rendered inside the text component.
    */
-    children: string
+    children: string | string[]
 }
 
 /**

@@ -1,9 +1,9 @@
 import { StandaloneWrapper } from "../wrapper/standalone-wrapper";
 import { ClockStandalone } from "./components/clock.atoms";
-import { RoschInput } from "../../..//lib";
 import { DateStandalone } from "./components/date.atoms";
 import { TextStandalone } from "./components/text.atoms";
 import { ButtonStandalone } from "./components/button.atoms";
+import {InputStandalone} from "./components/input.atoms";
 
 const AtomsPage = () => {
     const components = [{
@@ -17,7 +17,7 @@ const AtomsPage = () => {
     } , {
         id: "rosch-input",
         name: "Rosch Input",
-        component: <RoschInput id="rosch-text-standalone" label="username"/>
+        component: <InputStandalone />
     } , {
         id: "rosch-clock",
         name: "Rosch Clock",
