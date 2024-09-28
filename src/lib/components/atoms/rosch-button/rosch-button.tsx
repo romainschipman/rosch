@@ -55,31 +55,31 @@ export interface RoschButtonProps extends RoschButtonStyledProps {
  */
 const RoschButton: FunctionComponent<RoschButtonProps> = ({ children, label="Valider", onClick, disabled, className, ...props }) => {
 
-  const displayButtonText = () => {
-    if(!!children) {
-      return children;
-    }
+    const displayButtonText = () => {
+        if(!!children) {
+            return children;
+        }
 
-    return <RoschText id="rosch__button__text">{label}</RoschText>;
-  };
+        return <RoschText id="rosch__button__text">{label}</RoschText>;
+    };
 
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    if(!disabled && !!onClick) {
-      onClick(e);
-    }
-  };
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+        if(!disabled && !!onClick) {
+            onClick(e);
+        }
+    };
 
-  return (
-    <RoschButtonStyled
-      className={cx("rosch__button", className)}
-      disabled={disabled}
-      onClick={handleClick} 
-      {...props}
-    >
-      {displayButtonText()}
-    </RoschButtonStyled>
-  );
+    return (
+        <RoschButtonStyled
+            className={cx("rosch__button", className)}
+            disabled={disabled}
+            onClick={handleClick} 
+            {...props}
+        >
+            {displayButtonText()}
+        </RoschButtonStyled>
+    );
 };
 
 export { RoschButton };

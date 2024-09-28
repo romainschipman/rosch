@@ -6,11 +6,11 @@ export interface TableRowProps {
 }
 
 const TableRow : FunctionComponent<TableRowProps> = () => {
-  return (
-    <TableRowStyled>
+    return (
+        <TableRowStyled>
 
-    </TableRowStyled>
-  );
+        </TableRowStyled>
+    );
 };
 
 export { TableRow };

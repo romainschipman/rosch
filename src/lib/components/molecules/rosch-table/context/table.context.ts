@@ -39,13 +39,13 @@ const TableContext = createContext<TableContextProps | undefined>(undefined);
  * @throws {Error} Throws an error if used outside the Table context.
 */
 const useTableContext = () => {
-  const context = useContext(TableContext);
+    const context = useContext(TableContext);
 
-  if(!context) {
-    throw new Error(errorMessages.ROSCH_TABLE_CONTEXT_ERROR);
-  }
+    if(!context) {
+        throw new Error(errorMessages.ROSCH_TABLE_CONTEXT_ERROR);
+    }
 
-  return context;
+    return context;
 };
 
 export { useTableContext, TableContext };

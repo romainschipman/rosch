@@ -18,119 +18,119 @@ export interface Theming extends CssProperties {
 * @returns A string containing the generated CSS properties.
 */
 const generateCssProperties = (props : Theming, defaultValues ?: Omit<CssProperties, "id"> ) => {
-  let cssProperties : string = "";
+    let cssProperties : string = "";
 
-  const {
-    defaultRadiusSize: radiusSizeTheme,
-    radiusSizes,
-    spacings
-  } = props.theme;
+    const {
+        defaultRadiusSize: radiusSizeTheme,
+        radiusSizes,
+        spacings
+    } = props.theme;
 
-  const {
-    width: defaultWidth,
-    height: defaultHeight,
-    maxWidth: defaultMaxWidth,
-    maxHeight: defaultMaxHeight,
-    radius: defaultRadiusSize,
-    padding: defaultPadding,
-    paddingHorizontal: defaultPaddingHorizontal,
-    paddingVertical: defaultPaddingVertical
-  } = defaultValues ?? {};
+    const {
+        width: defaultWidth,
+        height: defaultHeight,
+        maxWidth: defaultMaxWidth,
+        maxHeight: defaultMaxHeight,
+        radius: defaultRadiusSize,
+        padding: defaultPadding,
+        paddingHorizontal: defaultPaddingHorizontal,
+        paddingVertical: defaultPaddingVertical
+    } = defaultValues ?? {};
 
-  const {
-    width: widthProps,
-    height: heightProps,
-    maxWidth: maxWidthProps,
-    maxHeight: maxHeightProps,
-    radius: radiusSizeProps,
-    padding: paddingProps,
-    paddingHorizontal: paddingHorizontalProps,
-    paddingVertical: paddingVerticalProps
-  } = props;
+    const {
+        width: widthProps,
+        height: heightProps,
+        maxWidth: maxWidthProps,
+        maxHeight: maxHeightProps,
+        radius: radiusSizeProps,
+        padding: paddingProps,
+        paddingHorizontal: paddingHorizontalProps,
+        paddingVertical: paddingVerticalProps
+    } = props;
 
-  let radius = radiusSizeTheme;
-  if(defaultRadiusSize) {
-    radius = defaultRadiusSize;
-  }
-  if(radiusSizeProps) {
-    radius = radiusSizeProps;
-  }
+    let radius = radiusSizeTheme;
+    if(defaultRadiusSize) {
+        radius = defaultRadiusSize;
+    }
+    if(radiusSizeProps) {
+        radius = radiusSizeProps;
+    }
 
-  if(radius) {
-    cssProperties += `border-radius:${generateRadius(radius, radiusSizes)};`;
-  }
+    if(radius) {
+        cssProperties += `border-radius:${generateRadius(radius, radiusSizes)};`;
+    }
 
-  let width = defaultWidth;
-  if(widthProps) {
-    width = widthProps;
-  }
+    let width = defaultWidth;
+    if(widthProps) {
+        width = widthProps;
+    }
 
-  if(width) {
-    cssProperties += `width:${width};`;
-  }
+    if(width) {
+        cssProperties += `width:${width};`;
+    }
 
-  let height = defaultHeight;
-  if(heightProps) {
-    height = heightProps;
-  }
+    let height = defaultHeight;
+    if(heightProps) {
+        height = heightProps;
+    }
 
-  if(height) {
-    cssProperties += `height:${height};`;
-  }
+    if(height) {
+        cssProperties += `height:${height};`;
+    }
 
-  let maxWidth = defaultMaxWidth;
-  if(maxWidthProps) {
-    maxWidth = maxWidthProps;
-  }
+    let maxWidth = defaultMaxWidth;
+    if(maxWidthProps) {
+        maxWidth = maxWidthProps;
+    }
 
-  if(maxWidth) {
-    cssProperties += `max-width:${maxWidth};`;
-  }
+    if(maxWidth) {
+        cssProperties += `max-width:${maxWidth};`;
+    }
 
-  let maxHeight = defaultMaxHeight;
-  if(maxHeightProps) {
-    maxHeight = maxHeightProps;
-  }
+    let maxHeight = defaultMaxHeight;
+    if(maxHeightProps) {
+        maxHeight = maxHeightProps;
+    }
 
-  if(maxHeight) {
-    cssProperties += `max-height:${maxHeight};`;
-  }
+    if(maxHeight) {
+        cssProperties += `max-height:${maxHeight};`;
+    }
 
-  let padding = defaultPadding;
-  if(paddingProps) {
-    padding = paddingProps;
-  }
+    let padding = defaultPadding;
+    if(paddingProps) {
+        padding = paddingProps;
+    }
 
-  if(padding) {
-    cssProperties += `padding:${generateSpacing(padding, spacings)};`;
-  }
+    if(padding) {
+        cssProperties += `padding:${generateSpacing(padding, spacings)};`;
+    }
 
-  let paddingHorizontal = defaultPaddingHorizontal;
-  if(paddingHorizontalProps) {
-    paddingHorizontal = paddingHorizontalProps;
-  }
+    let paddingHorizontal = defaultPaddingHorizontal;
+    if(paddingHorizontalProps) {
+        paddingHorizontal = paddingHorizontalProps;
+    }
 
-  if(!padding && paddingHorizontal) {
-    cssProperties += `
+    if(!padding && paddingHorizontal) {
+        cssProperties += `
     padding-left:${generateSpacing(paddingHorizontal, spacings)};
     padding-right:${generateSpacing(paddingHorizontal, spacings)};
   `;
-  }
+    }
 
 
-  let paddingVertical = defaultPaddingVertical;
-  if(paddingVerticalProps) {
-    paddingVertical = paddingVerticalProps;
-  }
+    let paddingVertical = defaultPaddingVertical;
+    if(paddingVerticalProps) {
+        paddingVertical = paddingVerticalProps;
+    }
 
-  if(!padding && paddingVertical) {
-    cssProperties += `
+    if(!padding && paddingVertical) {
+        cssProperties += `
     padding-top:${generateSpacing(paddingVertical, spacings)};
     padding-bottom:${generateSpacing(paddingVertical, spacings)};
   `;
-  }
+    }
 
-  return cssProperties;
+    return cssProperties;
 };
 
 export { generateCssProperties };

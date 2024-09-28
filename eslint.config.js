@@ -22,7 +22,7 @@ export default [
       "semi": ["error", "always"],
       "quotes": ["error", "double"],
       "object-curly-spacing": ["error", "always"],
-      "indent": ["error", 2],
+      "indent": ["error", 4],
       "eqeqeq": "error",
       "no-cond-assign": ["error", "always"],
       "no-prototype-builtins": "off",

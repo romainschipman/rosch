@@ -17,38 +17,38 @@ interface GenerateInputColorProps {
  */
 const generateInputColor = ({ theme, colorVariant, readOnly, error }: GenerateInputColorProps) => {
 
-  const isNotPrimaryColor = (colorVariant !== "secondary" && colorVariant !== "primary" && colorVariant !== "tertiary");
+    const isNotPrimaryColor = (colorVariant !== "secondary" && colorVariant !== "primary" && colorVariant !== "tertiary");
 
-  if (!colorVariant || isNotPrimaryColor) {
-    colorVariant = "primary";
-  }
+    if (!colorVariant || isNotPrimaryColor) {
+        colorVariant = "primary";
+    }
 
-  const inputColors = theme.themeColors?.inputs;
+    const inputColors = theme.themeColors?.inputs;
 
 
-  let cssProprerties = `
+    let cssProprerties = `
         border: none;
         outline: 0.05rem solid black;
     `;
 
-  if (!inputColors) {
-    return cssProprerties;
-  }
+    if (!inputColors) {
+        return cssProprerties;
+    }
 
-  cssProprerties = `
+    cssProprerties = `
         border: none;
         outline: 0.05rem solid ${inputColors[colorVariant]?.default?.color};
     `;
 
-  if (!!error) {
-    cssProprerties += `
+    if (!!error) {
+        cssProprerties += `
         outline: 0.05rem solid ${inputColors.danger?.default?.color};
     `;
-    return cssProprerties;
-  }
+        return cssProprerties;
+    }
 
-  if (readOnly) {
-    cssProprerties += `
+    if (readOnly) {
+        cssProprerties += `
             outline: 0.05rem solid ${inputColors[colorVariant]?.read_only?.onColor};
             &:focus {
                 outline: 0.1rem solid ${inputColors[colorVariant]?.focus?.onColor};
@@ -57,10 +57,10 @@ const generateInputColor = ({ theme, colorVariant, readOnly, error }: GenerateIn
                 outline: 0.05rem solid ${inputColors[colorVariant]?.disabled?.onColor};
             }
         `;
-    return cssProprerties;
-  }
+        return cssProprerties;
+    }
 
-  cssProprerties += `
+    cssProprerties += `
         &:focus {
             outline: 0.05rem solid ${inputColors[colorVariant]?.focus?.color};
         }
@@ -69,7 +69,7 @@ const generateInputColor = ({ theme, colorVariant, readOnly, error }: GenerateIn
             outline: 0.05rem solid ${inputColors[colorVariant]?.disabled?.onColor};
         }
     `;
-  return cssProprerties;
+    return cssProprerties;
 
 };
 
@@ -80,20 +80,20 @@ interface GenerateInputLabelColorProps {
 
 
 const generateInputLabelColor = ({ error, theme }: GenerateInputLabelColorProps) => {
-  if (!!error) {
+    if (!!error) {
 
-    if(!theme.themeColors?.inputs?.danger) {
-      return "";
-    }
+        if(!theme.themeColors?.inputs?.danger) {
+            return "";
+        }
 
-    return `
+        return `
         .rosch__input__label {
             color: ${theme.themeColors?.inputs?.danger?.default?.color}
         }
     `;
-  }
+    }
 
-  return "";
+    return "";
 };
   
 

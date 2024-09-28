@@ -20,15 +20,15 @@ export interface RoschTextStyledProps extends CssProperties {
     /**
      * Optional property to apply bold styling to the text
      */
-    bold?: boolean;
+    isBold?: boolean;
     /**
      * Optional property to apply underline styling to the text.
      */
-    underline?: boolean;
+    isUnderline?: boolean;
     /**
      * Optional property to apply uppercase styling to the text.
      */
-    uppercase?: boolean;
+    isUppercase?: boolean;
     /**
      * Optional property to apply a specific color type from the theme.
      */

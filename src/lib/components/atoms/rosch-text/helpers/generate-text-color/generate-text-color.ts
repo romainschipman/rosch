@@ -16,23 +16,23 @@ interface GenerateTextColorProps {
  */
 const generateTextColor = ({ theme, colorVariant } : GenerateTextColorProps) => {
 
-  if(!colorVariant) {
-    colorVariant = "primary";
-  }
-
-  if(theme.themeColors?.texts) {
-    const textColor = theme.themeColors.texts[colorVariant]?.default?.color;
-
-    if(!textColor) {
-      return "";
+    if(!colorVariant) {
+        colorVariant = "primary";
     }
 
-    return `
+    if(theme.themeColors?.texts) {
+        const textColor = theme.themeColors.texts[colorVariant]?.default?.color;
+
+        if(!textColor) {
+            return "";
+        }
+
+        return `
       color: ${textColor};
     `;
-  }
+    }
 
-  return "";
+    return "";
 };
 
 export { generateTextColor };

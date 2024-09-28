@@ -4,79 +4,79 @@ import { useTableContext } from "../../context/table.context";
 
 // Mocking RoschText and TableHeaderStyled
 jest.mock("../../../../atoms/rosch-text/rosch-text", () => ({
-  RoschText: jest.fn(({ children }) => <span>{children}</span>),
+    RoschText: jest.fn(({ children }) => <span>{children}</span>),
 }));
 
 jest.mock("./rosch-header.style", () => ({
-  TableHeaderStyled: jest.fn(({ children }) => <thead>{children}</thead>),
+    TableHeaderStyled: jest.fn(({ children }) => <thead>{children}</thead>),
 }));
 
 jest.mock("@hello-pangea/dnd", () => ({
-  Draggable: jest.fn(({ children }) => children({
-    draggableProps: {},
-    dragHandleProps: {},
-    innerRef: jest.fn(),
-  })),
+    Draggable: jest.fn(({ children }) => children({
+        draggableProps: {},
+        dragHandleProps: {},
+        innerRef: jest.fn(),
+    })),
 }));
 
 // Mocking useTableContext
 jest.mock("../../context/table.context", () => ({
-  useTableContext: jest.fn(),
+    useTableContext: jest.fn(),
 }));
 
 describe("Unit test for TableHeader", () => {
-  const columnNames = {
-    id: "ID",
-    name: "Name",
-    author: "Author",
-    isActive: "Status",
-  };
+    const columnNames = {
+        id: "ID",
+        name: "Name",
+        author: "Author",
+        isActive: "Status",
+    };
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test("should render table headers based on columnsOrder from context", () => {
-    (useTableContext as jest.Mock).mockReturnValue({
-      columnsOrder: ["id", "name", "author", "isActive", "actions"],
-      enableColumnOrder: false,
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    const { getByText } = render(<RoschTableHeader columnNames={columnNames} />);
+    test("should render table headers based on columnsOrder from context", () => {
+        (useTableContext as jest.Mock).mockReturnValue({
+            columnsOrder: ["id", "name", "author", "isActive", "actions"],
+            enableColumnOrder: false,
+        });
 
-    expect(getByText("ID")).toBeInTheDocument();
-    expect(getByText("Name")).toBeInTheDocument();
-    expect(getByText("Author")).toBeInTheDocument();
-    expect(getByText("Status")).toBeInTheDocument();
-    expect(getByText("actions")).toBeInTheDocument();
-  });
+        const { getByText } = render(<RoschTableHeader columnNames={columnNames} />);
 
-  test("should render table headers using column keys if columnsOrder is not provided", () => {
-    (useTableContext as jest.Mock).mockReturnValue({
-      columnsOrder: [],
-      enableColumnOrder: false,
+        expect(getByText("ID")).toBeInTheDocument();
+        expect(getByText("Name")).toBeInTheDocument();
+        expect(getByText("Author")).toBeInTheDocument();
+        expect(getByText("Status")).toBeInTheDocument();
+        expect(getByText("actions")).toBeInTheDocument();
     });
 
-    const { getByText } = render(<RoschTableHeader columnNames={columnNames} />);
+    test("should render table headers using column keys if columnsOrder is not provided", () => {
+        (useTableContext as jest.Mock).mockReturnValue({
+            columnsOrder: [],
+            enableColumnOrder: false,
+        });
 
-    expect(getByText("ID")).toBeInTheDocument();
-    expect(getByText("Name")).toBeInTheDocument();
-    expect(getByText("Author")).toBeInTheDocument();
-    expect(getByText("Status")).toBeInTheDocument();
-  });
+        const { getByText } = render(<RoschTableHeader columnNames={columnNames} />);
 
-
-  test("should disable dragging when enableColumnOrder is false", () => {
-    (useTableContext as jest.Mock).mockReturnValue({
-      columnsOrder: ["id", "name", "author", "isActive"],
-      enableColumnOrder: false,
+        expect(getByText("ID")).toBeInTheDocument();
+        expect(getByText("Name")).toBeInTheDocument();
+        expect(getByText("Author")).toBeInTheDocument();
+        expect(getByText("Status")).toBeInTheDocument();
     });
 
-    const { container } = render(<RoschTableHeader columnNames={columnNames} />);
 
-    const draggableItems = container.querySelectorAll("th");
-    draggableItems.forEach((item : any) => {
-      expect(item).not.toHaveAttribute("draggable");
+    test("should disable dragging when enableColumnOrder is false", () => {
+        (useTableContext as jest.Mock).mockReturnValue({
+            columnsOrder: ["id", "name", "author", "isActive"],
+            enableColumnOrder: false,
+        });
+
+        const { container } = render(<RoschTableHeader columnNames={columnNames} />);
+
+        const draggableItems = container.querySelectorAll("th");
+        draggableItems.forEach((item : any) => {
+            expect(item).not.toHaveAttribute("draggable");
+        });
     });
-  });
 });

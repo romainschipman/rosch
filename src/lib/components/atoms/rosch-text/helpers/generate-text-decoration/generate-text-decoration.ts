@@ -1,7 +1,7 @@
 interface GenerateTextDecorationProps {
-    bold?: boolean;
-    underline?: boolean;
-    uppercase?: boolean;
+    isBold?: boolean;
+    isUnderline?: boolean;
+    isUppercase?: boolean;
 }
 
 
@@ -13,22 +13,22 @@ interface GenerateTextDecorationProps {
  * @returns A string containing the appropriate CSS rules, such as `font-weight: bold;` and `text-decoration: underline;`, 
  *          if the corresponding props are provided. Returns an empty string if no relevant props are provided.
  */
-const generateTextDecoration = ({ bold, underline, uppercase }: GenerateTextDecorationProps): string | undefined => {
-  let cssProperties = "";
+const generateTextDecoration = ({ isBold, isUnderline, isUppercase }: GenerateTextDecorationProps): string | undefined => {
+    let cssProperties = "";
   
-  if(bold) {
-    cssProperties += "font-weight: bold;";
-  }
+    if(isBold) {
+        cssProperties += "font-weight: bold;";
+    }
   
-  if(underline) {
-    cssProperties += "text-decoration: underline;";
-  }
+    if(isUnderline) {
+        cssProperties += "text-decoration: underline;";
+    }
   
-  if(uppercase) {
-    cssProperties += "text-transform: uppercase;";
-  }
+    if(isUppercase) {
+        cssProperties += "text-transform: uppercase;";
+    }
   
-  return cssProperties;
+    return cssProperties;
 };
 
 export { generateTextDecoration };

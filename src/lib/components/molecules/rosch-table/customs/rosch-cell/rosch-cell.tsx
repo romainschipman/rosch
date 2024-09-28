@@ -49,11 +49,11 @@ export interface RoschCellProps<T> {
  *  )} /> <!-- Custom cell for actions, not linked to a specific field -->
  */
 const RoschCell = <T,>({ renderElement , value } : RoschCellProps<T>) => {
-  return(
-    <RoschTableCellStyled>
-      {renderElement(value as T)}
-    </RoschTableCellStyled>
-  );
+    return(
+        <RoschTableCellStyled>
+            {renderElement(value as T)}
+        </RoschTableCellStyled>
+    );
 };
 
 export { RoschCell };

@@ -19,38 +19,38 @@ type ThemeColorVariant = (typeof themeColorsVariants)[number]; // Les variantes 
  * @returns {ThemeColorPalette} - A complete color palette that includes all component types and color variants, with defaults where necessary.
  */
 const generateColorsPalette = (colors?: ThemeColorPalette): ThemeColorPalette => {
-  if (!colors) {
-    return defaultThemeColors;
-  }
-
-  let newThemeColor: ThemeColorPalette = {};
-
-  componentsTypes.forEach((componentType: ComponentType) => {
-    const colorsComponent = colors[componentType];
-    const defaultThemeColorComponent = defaultThemeColors[componentType];
-
-    if (!colorsComponent) {
-      newThemeColor[componentType] = defaultThemeColorComponent;
-    } else {
-      const newColorsComponent: Partial<typeof colorsComponent> = {
-        primary: { ...defaultThemeColorComponent?.primary, ...colorsComponent.primary },
-      };
-
-      themeColorsVariants.forEach((themeColorVariant: ThemeColorVariant) => {
-        if (!colorsComponent[themeColorVariant]) {
-          newColorsComponent[themeColorVariant] = defaultThemeColorComponent?.[themeColorVariant];
-        } else {
-          newColorsComponent[themeColorVariant] = {
-            ...defaultThemeColorComponent?.[themeColorVariant],
-            ...colorsComponent[themeColorVariant],
-          };
-        }
-      });
-
-      newThemeColor[componentType] = newColorsComponent as typeof colorsComponent;
+    if (!colors) {
+        return defaultThemeColors;
     }
-  });
 
-  return newThemeColor;
+    let newThemeColor: ThemeColorPalette = {};
+
+    componentsTypes.forEach((componentType: ComponentType) => {
+        const colorsComponent = colors[componentType];
+        const defaultThemeColorComponent = defaultThemeColors[componentType];
+
+        if (!colorsComponent) {
+            newThemeColor[componentType] = defaultThemeColorComponent;
+        } else {
+            const newColorsComponent: Partial<typeof colorsComponent> = {
+                primary: { ...defaultThemeColorComponent?.primary, ...colorsComponent.primary },
+            };
+
+            themeColorsVariants.forEach((themeColorVariant: ThemeColorVariant) => {
+                if (!colorsComponent[themeColorVariant]) {
+                    newColorsComponent[themeColorVariant] = defaultThemeColorComponent?.[themeColorVariant];
+                } else {
+                    newColorsComponent[themeColorVariant] = {
+                        ...defaultThemeColorComponent?.[themeColorVariant],
+                        ...colorsComponent[themeColorVariant],
+                    };
+                }
+            });
+
+            newThemeColor[componentType] = newColorsComponent as typeof colorsComponent;
+        }
+    });
+
+    return newThemeColor;
 };
 export { generateColorsPalette };

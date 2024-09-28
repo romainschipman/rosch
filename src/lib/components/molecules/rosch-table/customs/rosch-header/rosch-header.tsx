@@ -37,44 +37,44 @@ export interface RoschTableHeaderProps {
  * <TableHeader columnNames={columnNames} />
  */
 const RoschTableHeader : FunctionComponent<RoschTableHeaderProps> = ({ columnNames }) => {
-  let { columnsOrder, enableColumnOrder } = useTableContext();
+    let { columnsOrder, enableColumnOrder } = useTableContext();
 
-  const renderColumnsElements = () => {
-    if(!columnsOrder || columnsOrder.length === 0) {
-      columnsOrder = Object.keys(columnNames);
-    }
+    const renderColumnsElements = () => {
+        if(!columnsOrder || columnsOrder.length === 0) {
+            columnsOrder = Object.keys(columnNames);
+        }
 
-    const generateColumnName = (column: string) => {
-      if(columnNames[column]) {
-        return columnNames[column];
-      }
-      return column;
+        const generateColumnName = (column: string) => {
+            if(columnNames[column]) {
+                return columnNames[column];
+            }
+            return column;
+        };
+
+        return columnsOrder.map((column, idx) => (
+            <Draggable isDragDisabled={!enableColumnOrder} key={`draggable-${column}`} draggableId={column} index={idx}>
+                {(provided) => (
+                    <th 
+                        key={`column-${column}-${idx}`}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                    >
+                        <RoschText id={`column-${column}-${idx}`}>{generateColumnName(column)}</RoschText>
+                    </th>
+                )}
+            </Draggable>
+        ));
     };
 
-    return columnsOrder.map((column, idx) => (
-      <Draggable isDragDisabled={!enableColumnOrder} key={`draggable-${column}`} draggableId={column} index={idx}>
-        {(provided) => (
-          <th 
-            key={`column-${column}-${idx}`}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <RoschText id={`column-${column}-${idx}`}>{generateColumnName(column)}</RoschText>
-          </th>
-        )}
-      </Draggable>
-    ));
-  };
-
-  return(
-    <TableHeaderStyled>
-      <tr
-      >
-        {renderColumnsElements()}
-      </tr>
-    </TableHeaderStyled>
-  );
+    return(
+        <TableHeaderStyled>
+            <tr
+            >
+                {renderColumnsElements()}
+            </tr>
+        </TableHeaderStyled>
+    );
 };
 
 export { RoschTableHeader };

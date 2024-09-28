@@ -40,19 +40,19 @@ export interface RowData {
 
 const RoschTableRow : FunctionComponent<RoschTableRowProps> = ({ row }) => {
 
-  const { columnsOrder } = useTableContext();
+    const { columnsOrder } = useTableContext();
 
-  const renderColumnsElements = () => {
+    const renderColumnsElements = () => {
+        return (
+            columnsOrder.map((column, index) =>  <RoschTableCell key={`col-${column}-${index}`} name={column} value={row[column] ?? row}  />)
+        );
+    };
+
     return (
-      columnsOrder.map((column, index) =>  <RoschTableCell key={`col-${column}-${index}`} name={column} value={row[column] ?? row}  />)
+        <RoschTableRowStyled>
+            {renderColumnsElements()}
+        </RoschTableRowStyled>
     );
-  };
-
-  return (
-    <RoschTableRowStyled>
-      {renderColumnsElements()}
-    </RoschTableRowStyled>
-  );
 };
 
 export { RoschTableRow };

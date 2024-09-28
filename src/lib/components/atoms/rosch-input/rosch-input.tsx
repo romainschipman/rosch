@@ -94,45 +94,45 @@ export interface RoschInputProps extends RoschInputStyledProps {
  */
 const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
 
-  const {
-    onChange,
-    placeholder,
-    label,
-    name,
-    inputRef,
-    type = "text",
-    maxLength = 255,
-    value,
-    ...styledProps
-  } = props;
+    const {
+        onChange,
+        placeholder,
+        label,
+        name,
+        inputRef,
+        type = "text",
+        maxLength = 255,
+        value,
+        ...styledProps
+    } = props;
 
-  const handleChange = (e: FormEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e.currentTarget.value);
-    }
-  };
+    const handleChange = (e: FormEvent<HTMLInputElement>) => {
+        if (onChange) {
+            onChange(e.currentTarget.value);
+        }
+    };
 
-  return (
-    <RoschInputStyled
-      {...styledProps}
-    >
-      {label && <RoschText className="rosch__input__label" id="label-input" fontSize="sm">{label}</RoschText>}
-      <input
-        ref={inputRef}
-        type={type}
-        className={classNames("rosch__input")}
-        maxLength={maxLength}
-        name={name}
-        value={value}
-        readOnly={props.readOnly}
-        disabled={props.disabled}
-        onChange={handleChange}
-        placeholder={placeholder}
-      />
-      <RoschText className="rosch__input__label" id="label-input" fontSize="xs">{props.error ?? ""}</RoschText>
-    </RoschInputStyled>
+    return (
+        <RoschInputStyled
+            {...styledProps}
+        >
+            {label && <RoschText className="rosch__input__label" id="label-input" fontSize="sm">{label}</RoschText>}
+            <input
+                ref={inputRef}
+                type={type}
+                className={classNames("rosch__input")}
+                maxLength={maxLength}
+                name={name}
+                value={value}
+                readOnly={props.readOnly}
+                disabled={props.disabled}
+                onChange={handleChange}
+                placeholder={placeholder}
+            />
+            <RoschText className="rosch__input__label" id="label-input" fontSize="xs">{props.error ?? ""}</RoschText>
+        </RoschInputStyled>
 
-  );
+    );
 };
 
 export { RoschInput };

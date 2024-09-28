@@ -8,12 +8,17 @@ export { RoschButton } from "./components/atoms/rosch-button/rosch-button";
 export type { RoschInputProps } from "./components/atoms/rosch-input/rosch-input";
 export { RoschInput } from "./components/atoms/rosch-input/rosch-input";
 
+export type { RoschClockProps } from "./components/atoms/rosch-clock/rosch-clock";
+export { RoschClock } from "./components/atoms/rosch-clock/rosch-clock";
+
+export type { RoschDateProps } from "./components/atoms/rosch-date/rosch-date";
+export { RoschDate } from "./components/atoms/rosch-date/rosch-date";
+
 export type { RoschCellProps } from "./components/molecules/rosch-table/customs/rosch-cell/rosch-cell";
 export { RoschCell } from "./components/molecules/rosch-table/customs/rosch-cell/rosch-cell";
 
 export type { RoschTableHeaderProps } from "./components/molecules/rosch-table/customs/rosch-header/rosch-header";
 export { RoschTableHeader } from "./components/molecules/rosch-table/customs/rosch-header/rosch-header";
-
 
 //MOLECULES
 export type { RoschTableProps } from "./components/molecules/rosch-table/rosch-table";
