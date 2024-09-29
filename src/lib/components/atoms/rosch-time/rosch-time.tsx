@@ -39,14 +39,14 @@ export interface RoschTimeProps extends RoschTextStyledProps {
  * <RoschTime time={new Date()} timeFormat="h:mm a" timeLocale="en"  />
  * ```
  */
-const RoschTime : FunctionComponent<RoschTimeProps> = ({ time, timeLocale, timeFormat="HH:mm" }) => {
+const RoschTime : FunctionComponent<RoschTimeProps> = ({ time, timeLocale, timeFormat="HH:mm", ...styledProps }) => {
 
     const displayTime = () => {
         return generateTime(time, { locale: timeLocale, format: timeFormat });
     };
 
     return (
-        <RoschTextStyled id="rosch-text">
+        <RoschTextStyled{...styledProps}  id="rosch-text" >
             {displayTime()}
         </RoschTextStyled>
     );

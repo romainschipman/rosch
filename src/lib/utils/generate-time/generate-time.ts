@@ -20,8 +20,7 @@ const generateTime = (time: Date,  options ?: GenerateTimeOptions) => {
 
     let locale = locales[options?.locale || "fr"];
 
-    const timeFormatted = format(time, formatStr, { locale });
-    return timeFormatted;
+    return  format(time, formatStr, { locale });
 };
 
 export { generateTime };
