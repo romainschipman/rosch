@@ -3,6 +3,7 @@ import { RoschTheme, Theme, ThemeColorPalette } from "../../../lib";
 import { StandaloneHeader } from "./standalone-header/standalone-header";
 import { StandaloneWrapperStyled } from "./standalone-wrapper.style";
 import { NotFound } from "./404/not-found";
+import classNames from "classnames";
 
 interface Component {
     id: string;
@@ -58,7 +59,7 @@ const StandaloneWrapper = ({ title, components = [] } : StandaloneWrapperProps) 
                 <StandaloneHeader />
                 <div className="standalone-header-title">{title}</div>
                 <div className="standalone-components-slider">
-                    {components?.map(component => <div key={component.id} className="component-item" onClick={() => setCurrentComponent(component)}>{component.name}</div>)}
+                    {components?.map(component => <div key={component.id} className={classNames("component-item", component.id === currentComponent.id && "component-item__selected")} onClick={() => setCurrentComponent(component)}>{component.name}</div>)}
                 </div>
                 <div className="standalone-header-body">{displayComponent()}</div>
             </StandaloneWrapperStyled>

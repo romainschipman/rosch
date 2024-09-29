@@ -4,6 +4,7 @@ import { DateStandalone } from "./components/date.atoms";
 import { TextStandalone } from "./components/text.atoms";
 import { ButtonStandalone } from "./components/button.atoms";
 import {InputStandalone} from "./components/input.atoms";
+import { TimeStandalone } from "./components/time.atoms";
 
 const AtomsPage = () => {
     const components = [{
@@ -26,6 +27,10 @@ const AtomsPage = () => {
         id: "rosch-date",
         name: "Rosch Date",
         component: <DateStandalone />
+    }, {
+        id: "rosch-time",
+        name: "Rosch Time",
+        component: <TimeStandalone />
     }];
 
     return(

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const StandaloneWrapperStyled = styled.div`
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -19,13 +19,14 @@ const StandaloneWrapperStyled = styled.div`
 
     .standalone-header-body {
         background-color: #ffffff;
-        margin : 10px;
+        margin: 10px;
         padding: 30px;
         letter-spacing: 2px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap:10px;
+        overflow-y: scroll;
+        gap: 10px;
     }
 
     .standalone-components-slider {
@@ -34,13 +35,20 @@ const StandaloneWrapperStyled = styled.div`
         display: flex;
         gap: 15px;
         overflow-x: scroll;
+        min-height: 2.5rem;
+
         .component-item {
             background-color: #f8f8f8;
-            padding:10px;
+            padding: 10px;
             cursor: pointer;
             min-width: 150px;
             display: flex;
-            justify-content:center;
+            justify-content: center;
+        }
+
+        .component-item__selected {
+            background-color: #57c1ff;
+            color: white;
         }
 
 `;

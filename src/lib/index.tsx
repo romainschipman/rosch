@@ -11,6 +11,9 @@ export { RoschInput } from "./components/atoms/rosch-input/rosch-input";
 export type { RoschClockProps } from "./components/atoms/rosch-clock/rosch-clock";
 export { RoschClock } from "./components/atoms/rosch-clock/rosch-clock";
 
+export type { RoschTimeProps } from "./components/atoms/rosch-time/rosch-time";
+export { RoschTime } from "./components/atoms/rosch-time/rosch-time";
+
 export type { RoschDateProps } from "./components/atoms/rosch-date/rosch-date";
 export { RoschDate } from "./components/atoms/rosch-date/rosch-date";
 
