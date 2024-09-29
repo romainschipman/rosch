@@ -1,5 +1,5 @@
 const warningMessages = {
-  ROSCH_TABLE_MISSING_HEADER_WARNING: `
+    ROSCH_TABLE_MISSING_HEADER_WARNING: `
           ROSCH_TABLE_MISSING_HEADER_WARNING
           It looks like you are trying to render a RoschTable without a RoschTable.Header component.
         

@@ -17,34 +17,34 @@ interface GenerateButtonColorProps {
  */
 const generateButtonColor = ({ theme, outline, disabled, colorVariant }: GenerateButtonColorProps) => {
 
-  if(!colorVariant) {
-    colorVariant = "primary";
-  }
+    if(!colorVariant) {
+        colorVariant = "primary";
+    }
 
-  const buttonColors = theme.themeColors?.buttons;
-  if(buttonColors) {
-    if(outline && !disabled) {
+    const buttonColors = theme.themeColors?.buttons;
+    if(buttonColors) {
+        if(outline && !disabled) {
 
-      if(!buttonColors[colorVariant]?.default) {
-        return "";
-      }
+            if(!buttonColors[colorVariant]?.default) {
+                return "";
+            }
 
-      return `
+            return `
       background-color: ${buttonColors[colorVariant]?.default?.color};
       .rosch__text {
         color: ${buttonColors[colorVariant]?.default?.onColor};
       }
       border: 0.05rem solid  ${buttonColors[colorVariant]?.default?.onColor};
       `;
-    }
+        }
 
-    if(outline && disabled) {
+        if(outline && disabled) {
 
-      if(!buttonColors[colorVariant]?.disabled) {
-        return "";
-      }
+            if(!buttonColors[colorVariant]?.disabled) {
+                return "";
+            }
 
-      return `
+            return `
       background-color: ${buttonColors[colorVariant]?.disabled?.color};
       color: ${buttonColors[colorVariant]?.disabled?.onColor};
       .rosch__text {
@@ -52,28 +52,28 @@ const generateButtonColor = ({ theme, outline, disabled, colorVariant }: Generat
       }
       border: 0.05rem solid  ${buttonColors[colorVariant]?.disabled?.onColor};
       `;
-    }
+        }
 
-    if(!outline && disabled) {
+        if(!outline && disabled) {
 
-      if(!buttonColors[colorVariant]?.disabled) {
-        return "";
-      }
+            if(!buttonColors[colorVariant]?.disabled) {
+                return "";
+            }
 
-      return `
+            return `
         background-color: ${buttonColors[colorVariant]?.disabled?.onColor};
         color: ${buttonColors[colorVariant]?.disabled?.color};
         .rosch__text {
           color: ${buttonColors[colorVariant]?.disabled?.color};
         }
       `;
-    }
+        }
 
-    if(!buttonColors[colorVariant]?.default) {
-      return "";
-    }
+        if(!buttonColors[colorVariant]?.default) {
+            return "";
+        }
 
-    return `
+        return `
       background-color: ${buttonColors[colorVariant]?.default?.onColor};
       color: ${buttonColors[colorVariant]?.default?.color};
       .rosch__text {
@@ -81,9 +81,9 @@ const generateButtonColor = ({ theme, outline, disabled, colorVariant }: Generat
       }
     `;
 
-  }
+    }
 
-  return "";
+    return "";
 };
 
 export { generateButtonColor };

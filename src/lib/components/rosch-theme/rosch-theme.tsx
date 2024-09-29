@@ -54,17 +54,17 @@ export interface RoschThemeProps {
  */
 const RoschTheme : FunctionComponent<RoschThemeProps> = ({ theme, colors, children }) => {
 
-  if(!theme) {
-    theme = defaultTheme;
-  }
+    if(!theme) {
+        theme = defaultTheme;
+    }
 
-  const themeColors = generateColorsPalette(colors);
+    const themeColors = generateColorsPalette(colors);
 
-  return (
-    <ThemeProvider theme={{ ...theme, themeColors }}>
-      {children}
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={{ ...theme, themeColors }}>
+            {children}
+        </ThemeProvider>
+    );
 };
 
 export { RoschTheme };

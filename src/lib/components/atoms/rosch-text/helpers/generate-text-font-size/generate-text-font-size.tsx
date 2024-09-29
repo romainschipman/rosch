@@ -22,14 +22,14 @@ interface GenerateTextFontSizeProps {
  */
 const generateTextFontSize = (props: GenerateTextFontSizeProps) => {
 
-  let fontSize = props.theme.defaultTextSize;
-  if(props.fontSize) {
-    fontSize = props.fontSize;
-  }
-  if(!fontSize) {
-    fontSize = "md";
-  }
-  return `
+    let fontSize = props.theme.defaultTextSize;
+    if(props.fontSize) {
+        fontSize = props.fontSize;
+    }
+    if(!fontSize) {
+        fontSize = "md";
+    }
+    return `
           font-size: ${generateFontSize(fontSize, props.theme.textSizes)};
       `;
 };

@@ -45,25 +45,25 @@ export interface RoschTableCellProps {
 * <RoschTableCell name="status" value="Active" />
 */
 const RoschTableCell : FunctionComponent<RoschTableCellProps> = ({ name, value }) => {
-  const { customCells } = useTableContext();
+    const { customCells } = useTableContext();
 
-  const customCellsArray = findChildrenElements(customCells, "CELL");
+    const customCellsArray = findChildrenElements(customCells, "CELL");
   
-  const callbackMatchingCell = (cell : ReactNode) => {
-    if(isValidElement(cell) && cell.props.field === name) {
-      return true;
+    const callbackMatchingCell = (cell : ReactNode) => {
+        if(isValidElement(cell) && cell.props.field === name) {
+            return true;
+        }
+    };
+  
+    const matchingCell = customCellsArray.find(callbackMatchingCell);
+  
+    if(matchingCell) {
+        return cloneElement(matchingCell as ReactElement<RoschCellProps<unknown>>, { value });
     }
-  };
   
-  const matchingCell = customCellsArray.find(callbackMatchingCell);
-  
-  if(matchingCell) {
-    return cloneElement(matchingCell as ReactElement<RoschCellProps<unknown>>, { value });
-  }
-  
-  return <RoschTableCellStyled>
-    <RoschText id={`${name}-row`} fontSize="sm">{value as string}</RoschText>
-  </RoschTableCellStyled>;
+    return <RoschTableCellStyled>
+        <RoschText id={`${name}-row`} fontSize="sm">{value as string}</RoschText>
+    </RoschTableCellStyled>;
 };
 
 export { RoschTableCell };

@@ -1,0 +1,31 @@
+import { Meta, Canvas, Story, Controls, Title, Source } from '@storybook/blocks';
+import * as RoschDateStories from './rosch-date.stories';
+
+<Meta of={RoschDateStories} />
+
+<Title>Rosch-Date</Title>
+
+The **`RoschDate`** component displays a clock with various format and style options. It is designed to dynamically integrate into your interfaces.
+
+## Props
+<Canvas layout="centered" />
+
+<Controls of={RoschDateStories.DefaultDate} exclude={["width", "height", "maxWidth", "maxHeight", "radius", "size"]}/>
+
+---
+
+## Usage
+
+### Default Clock
+This example demonstrates the **`RoschClock`** component in its default configuration, displaying simple clock content.
+
+<Canvas layout="centered" />
+
+---
+
+## Technical Documentation
+
+<Source language="tsx" dark={true}>
+
+</Source>
+

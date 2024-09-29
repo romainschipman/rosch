@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { RoschTableCellStyled } from "../../rosch-table-cell/rosch-table-cell.style";
+import { RoschTableCellStyled, RoschTableCellStyledProps } from "../../rosch-table-cell/rosch-table-cell.style";
 
 /**
  * Represents a customizable cell in the RoschTable component.
@@ -12,7 +12,7 @@ import { RoschTableCellStyled } from "../../rosch-table-cell/rosch-table-cell.st
  * @property {(element: T) => ReactNode | ReactNode[]} renderElement - A function that renders the content of the cell based on the field value or row data.
  * @property {T} [value] - The value associated with the field, passed to the `renderElement` function.
  */
-export interface RoschCellProps<T> {
+export interface RoschCellProps<T> extends RoschTableCellStyledProps {
     /**
      *  The field name representing the data column from the table's data.
      */
@@ -48,12 +48,12 @@ export interface RoschCellProps<T> {
  *    <button onClick={() => handleDelete(item.id)}>Delete {item.id}</button>
  *  )} /> <!-- Custom cell for actions, not linked to a specific field -->
  */
-const RoschCell = <T,>({ renderElement , value } : RoschCellProps<T>) => {
-  return(
-    <RoschTableCellStyled>
-      {renderElement(value as T)}
-    </RoschTableCellStyled>
-  );
+const RoschCell = <T,>({ renderElement , value, ...styledProps} : RoschCellProps<T>) => {
+    return(
+        <RoschTableCellStyled {...styledProps}>
+            {renderElement(value as T)}
+        </RoschTableCellStyled>
+    );
 };
 
 export { RoschCell };

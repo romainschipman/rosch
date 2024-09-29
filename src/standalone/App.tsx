@@ -1,11 +1,14 @@
-import { RowData } from "../lib/components/molecules/rosch-table/rosch-table-row/rosch-table-row";
-import { RoschButton, RoschTable, RoschText, RoschTheme } from "../lib";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AtomsPage } from "./components/atoms/atoms.page";
+import { MoleculesPage } from "./components/molecules/molecules.page";
+import { OrganismsPage } from "./components/organisms/organisms.page";
 
 /**
  * App Component
  * @returns The app component
  */
 const App = () => {
+/*
 
   interface Autor {
     id: number,
@@ -19,7 +22,6 @@ const App = () => {
     author: Autor
     isActive: boolean
   }
-
   const columnNames = {
     id: "Id",
     name: "Nom du livre",
@@ -47,9 +49,21 @@ const App = () => {
     isActive: false,
   }];
 
+*/
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<AtomsPage />} />
+                <Route path="/atoms" element={<AtomsPage />} />
+                <Route path="/molecules" element={<MoleculesPage />} />
+                <Route path="/organisms" element={<OrganismsPage />} />
 
+            </Routes>
+        </BrowserRouter>
 
+    );
 
+/*
   return (
     <RoschTheme>
       <div style={{ display: "flex", alignItems : "center", justifyContent : "center", marginTop: "50px" }}>
@@ -80,7 +94,7 @@ const App = () => {
       </div>
     </RoschTheme>
   );
-  
+  */
 };
 
 export default App;

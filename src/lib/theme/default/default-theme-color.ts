@@ -5,9 +5,9 @@ import { textsColors } from "./colors/texts-colors";
 
 
 const defaultThemeColors : ThemeColorPalette = {
-  buttons: buttonsColors,
-  inputs: inputColors,
-  texts: textsColors
+    buttons: buttonsColors,
+    inputs: inputColors,
+    texts: textsColors
 };
 
 export { defaultThemeColors };

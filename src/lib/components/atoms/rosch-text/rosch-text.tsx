@@ -13,7 +13,7 @@ export interface RoschTextProps extends RoschTextStyledProps {
   /**
    * The content to be rendered inside the text component.
    */
-    children: string
+    children: string | string[]
 }
 
 /**
@@ -33,11 +33,11 @@ export interface RoschTextProps extends RoschTextStyledProps {
  * @returns A JSX element with styled text.
  */
 const RoschText : FunctionComponent<RoschTextProps> = ({ children, className, ...props }) => {
-  return(
-    <RoschTextStyled className={classNames("rosch__text", className)} { ...props } >
-      { children }
-    </RoschTextStyled>
-  );
+    return(
+        <RoschTextStyled className={classNames("rosch__text", className)} { ...props } >
+            { children }
+        </RoschTextStyled>
+    );
 };
 
 export { RoschText };

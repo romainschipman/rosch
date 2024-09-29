@@ -27,27 +27,27 @@ import { RoschTable } from "../../rosch-table";
  * const headers = findChildrenElements(children, "HEADER"); // returns [<RoschTable.Header key="header1" />]
  */
 const findChildrenElements = (children?: ReactNode | ReactNode[], type: "CELL" | "HEADER" = "CELL") => {
-  if(!!children) {
-    let childrenComponents = children as ReactNode[];
-    let typeComponent : any = RoschTable.Cell;
+    if(!!children) {
+        let childrenComponents = children as ReactNode[];
+        let typeComponent : any = RoschTable.Cell;
         
-    if(!Array.isArray(childrenComponents)) {
-      childrenComponents = [children];
-    }
+        if(!Array.isArray(childrenComponents)) {
+            childrenComponents = [children];
+        }
 
-    if(type === "HEADER") {
-      typeComponent = RoschTable.Header;
-    }
+        if(type === "HEADER") {
+            typeComponent = RoschTable.Header;
+        }
     
-    const callbackMatchingCell = (cell : ReactNode) => {
-      if(isValidElement(cell) && cell.type === typeComponent) {
-        return true;
-      }
-    };
+        const callbackMatchingCell = (cell : ReactNode) => {
+            if(isValidElement(cell) && cell.type === typeComponent) {
+                return true;
+            }
+        };
       
-    return childrenComponents.filter(callbackMatchingCell);
-  }
-  return [];
+        return childrenComponents.filter(callbackMatchingCell);
+    }
+    return [];
 
 };
 

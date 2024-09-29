@@ -61,52 +61,52 @@ export interface RoschTableProps extends RoschTableStyledProps {
 * ```
 */
 const RoschTable: RoschTableType = ({ data, children, columnsOrder = [], enableColumnOrder = false }) => {
-  const [columns, setColumns] = useState<string[]>(columnsOrder);
+    const [columns, setColumns] = useState<string[]>(columnsOrder);
 
-  const handleDragEnd = (result: DropResult) => {
-    if(!enableColumnOrder) return;
+    const handleDragEnd = (result: DropResult) => {
+        if(!enableColumnOrder) return;
 
-    const updatedColumns = updateColumnsOnDrag(result, columns);
+        const updatedColumns = updateColumnsOnDrag(result, columns);
 
-    setColumns(updatedColumns);
-  };
+        setColumns(updatedColumns);
+    };
 
-  const renderHeaderElement = () => {
-    const childrenComponents = findChildrenElements(children, "HEADER");
-    if (childrenComponents.length !== 1) {
-      if (childrenComponents.length === 0) {
-        console.warn(warningMessages.ROSCH_TABLE_MISSING_HEADER_WARNING);
-      }
-      if (childrenComponents.length > 1) {
-        throw new Error(errorMessages.ROSCH_TABLE_MULTIPLE_HEADERS_ERROR);
-      }
-    } else {
-      const headerElement = childrenComponents[0];
-      return cloneElement(headerElement as ReactElement<RoschTableHeaderProps>);
-    }
-  };
+    const renderHeaderElement = () => {
+        const childrenComponents = findChildrenElements(children, "HEADER");
+        if (childrenComponents.length !== 1) {
+            if (childrenComponents.length === 0) {
+                console.warn(warningMessages.ROSCH_TABLE_MISSING_HEADER_WARNING);
+            }
+            if (childrenComponents.length > 1) {
+                throw new Error(errorMessages.ROSCH_TABLE_MULTIPLE_HEADERS_ERROR);
+            }
+        } else {
+            const headerElement = childrenComponents[0];
+            return cloneElement(headerElement as ReactElement<RoschTableHeaderProps>);
+        }
+    };
 
-  const renderRowElements = () => {
-    return data.map((row, index) => <RoschTableRow key={`row-${index}`} row={row} />);
-  };
+    const renderRowElements = () => {
+        return data.map((row, index) => <RoschTableRow key={`row-${index}`} row={row} />);
+    };
 
-  return (
-    <TableContext.Provider value={{ customCells: children, columnsOrder: columns, enableColumnOrder }}>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="columns" direction="horizontal">
-          {(provided) => (
-            <RoschTableStyled ref={provided.innerRef} {...provided.droppableProps}>
-              {renderHeaderElement()}
-              <tbody>
-                {renderRowElements()}
-              </tbody>
-              {provided.placeholder}
-            </RoschTableStyled>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </TableContext.Provider>
-  );
+    return (
+        <TableContext.Provider value={{ customCells: children, columnsOrder: columns, enableColumnOrder }}>
+            <DragDropContext onDragEnd={handleDragEnd}>
+                <Droppable droppableId="columns" direction="horizontal">
+                    {(provided) => (
+                        <RoschTableStyled ref={provided.innerRef} {...provided.droppableProps}>
+                            {renderHeaderElement()}
+                            <tbody>
+                                {renderRowElements()}
+                            </tbody>
+                            {provided.placeholder}
+                        </RoschTableStyled>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        </TableContext.Provider>
+    );
 };
 
 RoschTable.Cell = RoschCell;
