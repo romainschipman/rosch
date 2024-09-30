@@ -23,7 +23,9 @@ const generateColorsPalette = (colors?: ThemeColorPalette): ThemeColorPalette =>
         return defaultThemeColors;
     }
 
-    let newThemeColor: ThemeColorPalette = {};
+    let newThemeColor: ThemeColorPalette = {
+        main: colors.main
+    };
 
     componentsTypes.forEach((componentType: ComponentType) => {
         const colorsComponent = colors[componentType];
