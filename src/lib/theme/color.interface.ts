@@ -78,6 +78,16 @@ export type OptionalThemeColorVariants = Partial<Record<Exclude<ThemeColorVarian
  * @property {OptionalThemeColorVariants} text - Other optional color variants for text.
  */
 export interface ThemeColorPalette {
+    main?: {
+        primary: string;
+        secondary?: string;
+        tertiary?: string;
+        success?: string;
+        danger?: string;
+        warning?: string;
+        info?: string;
+        customs?: Record<string, string>
+    }
     /**
      * The color settings for buttons (optional).
      */
