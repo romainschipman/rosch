@@ -21,6 +21,11 @@ const StandaloneWrapper = ({ title, components = [] } : StandaloneWrapperProps) 
 
     const [currentComponent, setCurrentComponent] = useState<Component>(components?.[0]);
     const colors : ThemeColorPalette = {
+        main: {
+            primary: {
+                highest: "#57c1ff"
+            }
+        },
         buttons: {
             primary: {
                 default: {
