@@ -11,6 +11,7 @@ export interface RoschCheckboxStyledProps extends CssProperties{
 const RoschCheckboxStyled = styled.div<RoschCheckboxStyledProps>`
     gap: 0.5rem;
     display: flex;
+    align-items: center;
     .checkbox__input {
         -webkit-appearance: none;
         -moz-appearance: none;

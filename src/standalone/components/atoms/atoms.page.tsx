@@ -6,6 +6,7 @@ import { ButtonStandalone } from "./components/button.atoms";
 import {InputStandalone} from "./components/input.atoms";
 import { TimeStandalone } from "./components/time.atoms";
 import { CheckboxStandalone } from "./components/checkbox.atoms";
+import { UploadFileStandalone } from "./components/upload-file";
 
 const AtomsPage = () => {
     const components = [{
@@ -36,6 +37,10 @@ const AtomsPage = () => {
         id: "rosch-checkbox",
         name: "Rosch Checkbox",
         component: <CheckboxStandalone />
+    }, {
+        id: "rosch-upload-file",
+        name: "Rosch Upload File",
+        component: <UploadFileStandalone />
     }];
 
     return(
