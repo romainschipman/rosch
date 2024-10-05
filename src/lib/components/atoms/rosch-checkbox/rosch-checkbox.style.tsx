@@ -7,6 +7,8 @@ export interface RoschCheckboxStyledProps extends CssProperties{
 }
 
 const RoschCheckboxStyled = styled.div<RoschCheckboxStyledProps>`
+    gap: 0.5rem;
+    display: flex;
     .checkbox__input {
         border-radius: ${({ radius }) => generateRadius(radius ?? "none")};
     }
