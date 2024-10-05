@@ -5,6 +5,7 @@ import { TextStandalone } from "./components/text.atoms";
 import { ButtonStandalone } from "./components/button.atoms";
 import {InputStandalone} from "./components/input.atoms";
 import { TimeStandalone } from "./components/time.atoms";
+import { CheckboxStandalone } from "./components/checkbox.atoms";
 
 const AtomsPage = () => {
     const components = [{
@@ -31,6 +32,10 @@ const AtomsPage = () => {
         id: "rosch-time",
         name: "Rosch Time",
         component: <TimeStandalone />
+    }, {
+        id: "rosch-checkbox",
+        name: "Rosch Checkbox",
+        component: <CheckboxStandalone />
     }];
 
     return(
