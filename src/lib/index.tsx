@@ -20,6 +20,9 @@ export { RoschDate } from "./components/atoms/rosch-date/rosch-date";
 export type { RoschCheckboxProps } from "./components/atoms/rosch-checkbox/rosch-checkbox";
 export { RoschCheckbox } from "./components/atoms/rosch-checkbox/rosch-checkbox";
 
+export type { RoschUploadFileProps } from "./components/atoms/rosch-upload-file/rosch-upload-file";
+export { RoschUploadFile } from "./components/atoms/rosch-upload-file/rosch-upload-file";
+
 export type { RoschCellProps } from "./components/molecules/rosch-table/customs/rosch-cell/rosch-cell";
 export { RoschCell } from "./components/molecules/rosch-table/customs/rosch-cell/rosch-cell";
 
