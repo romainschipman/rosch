@@ -34,11 +34,11 @@ export interface RoschInputProps extends RoschInputStyledProps {
    * @param value
    * @returns void;
    */
-  onChange?: (value: string) => void;
+  onChange?: (value: string | number) => void;
   /**
    * The input value.
    */
-  value?: string;
+  value?: string | number;
   /**
    * Optional placeholder text displayed inside the input when it is empty.
    */
@@ -49,7 +49,7 @@ export interface RoschInputProps extends RoschInputStyledProps {
    * @type {"text" | "password"}
    * @default "text"
    */
-  type?: "text" | "password"
+  type?: "text" | "password" | "number";
   /**
     * Optional maximum number of characters allowed in the input.
     * 
