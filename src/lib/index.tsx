@@ -8,6 +8,9 @@ export { RoschButton } from "./components/atoms/rosch-button/rosch-button";
 export type { RoschInputProps } from "./components/atoms/rosch-input/rosch-input";
 export { RoschInput } from "./components/atoms/rosch-input/rosch-input";
 
+export type { RoschSelectProps } from "./components/atoms/rosch-select/rosch-select";
+export { RoschSelect } from "./components/atoms/rosch-select/rosch-select";
+
 export type { RoschClockProps } from "./components/atoms/rosch-clock/rosch-clock";
 export { RoschClock } from "./components/atoms/rosch-clock/rosch-clock";
 
