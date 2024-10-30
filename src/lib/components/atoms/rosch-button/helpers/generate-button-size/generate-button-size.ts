@@ -1,4 +1,4 @@
-import { SpacingSize, Theme } from "../../../../../theme/theme.interface";
+import { SpacingSize, TextSize, Theme } from "../../../../../theme/theme.interface";
 import { generateFontSize } from "../../../../../utils/generate-font-size/generate-font-size";
 
 interface GenerateButtonSizeProps {
@@ -25,28 +25,23 @@ const generateButtonSize = ({ theme, size } : GenerateButtonSizeProps) => {
         }
   `;
 
-    if(size === "xs" || size === "sm") {
-        return `
-        ${cssProperties}
-        padding-top: ${generateFontSize("sm", theme.spacings)};
-        padding-bottom: ${generateFontSize("sm", theme.spacings)};
-    `;
-    }
+    let sizeToGenerate: TextSize = "sm";
+
     if(size === "md" || size === "lg") {
-        return `
-        ${cssProperties}
-        padding-top: ${generateFontSize("md", theme.spacings)};
-        padding-bottom: ${generateFontSize("md", theme.spacings)};
-    `;
+        sizeToGenerate = "md";
+    }
+    if(size === "xl" || size === "xxl") {
+        sizeToGenerate = "lg";
     }
 
-    if(size === "xl" || size === "xxl") {
-        return `
+    const paddingTop = generateFontSize(sizeToGenerate, theme.spacings);
+    const paddingBottom = generateFontSize(sizeToGenerate, theme.spacings);
+
+    return `
         ${cssProperties}
-        padding-top: ${generateFontSize("lg", theme.spacings)};
-        padding-bottom: ${generateFontSize("lg", theme.spacings)};
+        padding-top: ${paddingTop};
+        padding-bottom: ${paddingBottom};
     `;
-    }
 };
 
 export { generateButtonSize };
