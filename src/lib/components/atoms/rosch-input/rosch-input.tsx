@@ -61,6 +61,10 @@ export interface RoschInputProps extends RoschInputStyledProps {
    * Optional name attribute for the input element, used for form submission.
    */
   name?: string;
+  /*
+  * Optional to render the input as textarea.
+   */
+  textarea?: boolean;
 
 }
 
@@ -103,10 +107,11 @@ const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
         type = "text",
         maxLength = 255,
         value,
+        textarea = false,
         ...styledProps
     } = props;
 
-    const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    const handleChange = (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (onChange) {
             onChange(e.currentTarget.value);
         }
@@ -117,18 +122,31 @@ const RoschInput: FunctionComponent<RoschInputProps> = (props) => {
             {...styledProps}
         >
             {label && <RoschText className="rosch__input__label" id="label-input" fontSize="sm">{label}</RoschText>}
-            <input
-                ref={inputRef}
-                type={type}
-                className={classNames("rosch__input")}
-                maxLength={maxLength}
-                name={name}
-                value={value}
-                readOnly={props.readOnly}
-                disabled={props.disabled}
-                onChange={handleChange}
-                placeholder={placeholder}
-            />
+            {textarea ?
+                <textarea
+                    className={classNames("rosch__input")}
+                    maxLength={maxLength}
+                    name={name}
+                    value={value}
+                    readOnly={props.readOnly}
+                    disabled={props.disabled}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                />
+                :
+                <input
+                    ref={inputRef}
+                    type={type}
+                    className={classNames("rosch__input")}
+                    maxLength={maxLength}
+                    name={name}
+                    value={value}
+                    readOnly={props.readOnly}
+                    disabled={props.disabled}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                />
+            }
             <RoschText className="rosch__input__label" id="label-input" fontSize="xs">{props.error ?? ""}</RoschText>
         </RoschInputStyled>
 

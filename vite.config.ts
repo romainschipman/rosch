@@ -14,7 +14,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/lib/index.tsx'),
+      entry: './src/lib/index.tsx',
       name: 'rosch-ui',
       fileName: (format) => `rosch-ui.${format}.js`,
     },
