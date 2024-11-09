@@ -1,4 +1,4 @@
-import { RoschSelect } from "../../../../lib/components/atoms/rosch-select/rosch-select";
+import { RoschSelect } from "../../../../lib";
 import { useState } from "react";
 
 
@@ -27,7 +27,7 @@ const SelectStandalone = () => {
         if(typeof value !== "string") {
             setSelected2(value);
         }
-    }
+    };
 
     return (
         <>
